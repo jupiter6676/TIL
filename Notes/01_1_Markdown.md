@@ -107,7 +107,7 @@ else:
   - 상대경로
   - 01_1_Markdown.assets 폴더를 같이 공유
 
-![aa](/Assets/01_1_Markdown.assets/aa.png)
+![aa](./Assets/01_1_Markdown.assets/aa.png)
 
 
 
