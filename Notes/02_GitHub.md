@@ -31,11 +31,13 @@
 3. `push` (add, commit한 후 마지막으로)
 
    ```bash
-   $ git push origin master
+   $ git push origin {Default Branch}
    ```
 
    ✨ 로컬 폴더의 파일, 폴더가 아닌 버전(커밋)이 올라간다.
 
+   ✨ 여기서 Default Branch = master
+   
    
    
    ✔️ 나는 이거 하니까 error: failed to push some refs to 에러, 'origin' does not appear to be a git repository 에러가 났었는데, 처음에 Repository 만들 때 README.md 추가하기 옵션 클릭해서 그렇더라.. 아예 저장소 삭제하고 처음부터 만드니까 됐음. 선생님 말씀을 잘 듣자..!!!
@@ -43,7 +45,7 @@
    ✔️ 후에도 failed to push some refs to 에러가 뜬다면: 원격 저장소 커밋 ≠ 로컬 저장소 커밋 → 원격 저장소의 변경 사항을 가져와야 함.
    
    ```bash
-   $ git pull origin master
+   $ git pull origin {Default Branch}
    ```
    
    를 하면 또 Merge branch 'master ' of (URL) 어쩌구 뜨면서 vi 편집기가 나올 수 있음.
