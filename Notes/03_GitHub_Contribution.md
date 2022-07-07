@@ -15,7 +15,7 @@
    - 인형을 앞에 두고 대화하는 거래...
    - 왼쪽은 실제 파는 제품이라는데 너무 귀엽다.....
 
-<table border=none>
+<table border="0">
 	<thead>
 		<tr>
 			<td width=50%><img src="https://pbs.twimg.com/media/D6H0Z38UcAAMu3C?format=jpg&name=small"></td>
