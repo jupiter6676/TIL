@@ -18,13 +18,12 @@
 <table border=none>
 	<thead>
 		<tr>
-			<img src="https://pbs.twimg.com/media/D6H0Z38UcAAMu3C?format=jpg&name=small" width=50%>
-		</tr>
-		<tr>
-			<img src="https://pbs.twimg.com/media/ErlAXdpU0AA4CLM.jpg:large" width=50%
+			<td width=50%><img src="https://pbs.twimg.com/media/D6H0Z38UcAAMu3C?format=jpg&name=small"></td>
+			<td width=50%><img src="https://pbs.twimg.com/media/ErlAXdpU0AA4CLM.jpg"></td>
 		</tr>
 	</thead>
 </table>
+
 
 
 # Git 추가 명령어
