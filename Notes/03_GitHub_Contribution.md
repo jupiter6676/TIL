@@ -157,7 +157,7 @@
 - 각 브랜치에서 master 브랜치에게 pull request를 보낸다.
 - 브랜치에서 merge 요청을 수락하면, 브랜치 2개가 병합됨.
 
-![image-20220707154206896](./Assets/03_GitHub_Contribution.assets/2022-07-07 154326.png)
+![image-20220707154206896](./Assets/03_GitHub_Contribution.assets/2022-07-07_154326.png)
 
 ## 2. Fork
 
