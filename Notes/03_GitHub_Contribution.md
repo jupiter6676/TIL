@@ -189,5 +189,3 @@
   ```
 
 - 그 후 [jupiter6676/test-01](https://github.com/jupiter6676/test-01.git)로 이동, PR 보내기
-
-- **가이드** → [GitHub Fork & Pull Request (제출하기)](https://hphk-edu.notion.site/GitHub-Fork-Pull-Request-5d02e08a90314c72a732d366ac2d552b)
