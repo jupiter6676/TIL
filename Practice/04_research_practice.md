@@ -101,19 +101,12 @@
   - Java, Kotlin, JavaScript/TypeScript 등 Contemporary programming language에 대한 이해가 있는 분
   - Container, 가상화 기반 어플리케이션 운영 환경에 대한 이해가 있는 분
   - Full Stack 지향으로 본인의 역량 개발에 제한을 두지 않는 분
-
 - 우대사항
-
   - Class/Object/State Diagram에 대한 이해 및 작성 능력을 가진 분
-
   - 웹 서비스 개발 프레임워크에 대한 이해가 있는 분 - Spring, Spring Boot, Express
-
   - 시스템 아키텍처에 대해 이해하고 있는 분 - Monolithic and Microservice Architecture
-
   - AWS 혹은 GCP 기반 서비스를 사용할 수 있는 분
-
   - Terraform을 이용한 인프라 환경 정의 및 관리를 할 수 있는 분
-
   - Docker, Kubernetes 활용/학습 경험이 있는 분
 
 
@@ -141,21 +134,15 @@
 ### 1.7 피플펀드컴퍼니
 
 - [백엔드 엔지니어 (Kotlin/Java)](https://career.programmers.co.kr/job_positions/6784)
-
 - 직무: 서버/백엔드
-
 - 기술 스택: `REST API`, `Kotlin`, `Java`
-
-- ##### 자격 조건
-
+- 자격 조건
   - Java 또는 Kotlin을 이용한 웹 애플리케이션 개발 경험
   - Web Framework(Spring Boot, Ktor)를 이용해서 Web Application 개발, 운영을 해보신 분
   - RDBMS 및 Transaction에 대한 이해도가 있으신 분
   - REST API 디자인에 대한 좋은 직관이 있으신 분
   - 유저가 겪는 문제점을 찾고 기술로 해결하는데 관심 있는 분
-
 - 우대사항
-
   - AWS, Azure, GCP 등과 같은 클라우드 환경에서 개발 경험이 있으신 분
   - Cache, MQ, gRPC, NoSql 시스템을 이용하여 대용량 트래픽에 대한 성능 개선 경험을 보유하신 분
   - 대용량 데이터 배치 시스템 개발/운영 경험을 보유하신 분
@@ -272,7 +259,6 @@
   - Unity 활용 능력 상 이상이신 분
   - 소규모 프로젝트 초기부터 런칭까지 개발 경험이 있으신 분
   - [필수 제출] 본인의 역량을 표현할 수 있는 다양한 C# 소스 코드를 꼭 첨부 부탁드립니다. (기밀 또는 저작권 법적 문제가 없어야 하며, 본인이 작성한 소스 코드만 업로드해주셔야 합니다.)
-
 - 우대사항
   - 관련 학과 전공자 우대
   - 3D 그래픽스(좌표계 변환, 행렬, 벡터)에 대한 이해가 있으신 분
@@ -353,7 +339,6 @@
 
 - https://career.programmers.co.kr/job_positions/7100
 - 언리얼 SDK 개발자
-
 - 직무: 게임 클라이언트
 - 기술 스택: `Unreal Engine`, `C++`
 - 자격 조건
@@ -384,4 +369,3 @@
   - 각 플랫폼(iOS, Android, Windows, WebGL) 별 네이티브 구현 해보신 분
   - 영어 커뮤니케이션이 능통하신 분
   - 팀 내 개발 문화를 개선해 본 경험이 있으신 분
-
