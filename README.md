@@ -37,3 +37,12 @@
 2. 실습
    - [Recruit Research](./Practice/04_research_practice.md)
    - [제출 링크](https://github.com/jupiter6676/job-research.git)
+
+
+
+## Python (1)
+
+1. 강의 노트
+   - [Python (1)](./Notes/05_Python (1).md)
+2. 실습
+   - [CodeUp 100제 6001-6014 풀기](https://github.com/jupiter6676/TIL/tree/master/Algorithm/CodeUp_100)
