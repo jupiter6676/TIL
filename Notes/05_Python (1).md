@@ -530,3 +530,29 @@ movie['actors']	# KeyError
 - 삭제
 
   - `.pop(key)`
+
+
+
+# 5. 코드업 100제 리뷰
+
+## 1. 6015번
+
+```python
+# 1.
+numbers = input().split()
+a = int(numbers[0])
+b = int(numbers[1])
+print(a)
+print(b)
+
+# 2. 결과를 동시에 할당
+a, b = input().split()
+print(int(a))
+print(int(b))
+
+# 3. map 함수
+a, b = map(int, input().split())
+print(a)
+print(b)
+```
+
