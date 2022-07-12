@@ -109,7 +109,7 @@
 
 - **【예시】**
 
-  ![조건 표현식](./Assets/06_Python (2).assets/조건표현식.png)
+  ![조건 표현식](./Assets/06_Python_(2).assets/조건표현식.png)
 
   ```python
   # 절댓값을 value에 저장
