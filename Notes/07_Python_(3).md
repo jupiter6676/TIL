@@ -241,7 +241,7 @@ add(2, 3)	# Argument
 
     ---
 
-    ![map](/Assets/07_Python_(3).assets/map.png)
+    ![map](./Assets/07_Python_(3).assets/map.png)
 
     ```python
     # 두 개의 정수가 공백을 사이에 두고 입력될 때
