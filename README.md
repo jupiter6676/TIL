@@ -45,6 +45,9 @@
 1. 강의 노트
    - [Python (1)](./Notes/05_Python_(1).md)
    - [Python (2)](./Notes/06_Python_(2).md)
+   - [Python (3)](./Notes/07_Python_(3).md)
 2. 실습
    - [CodeUp 100제](https://github.com/jupiter6676/TIL/tree/master/Algorithm/CodeUp_100)
    - [예제](https://github.com/jupiter6676/TIL/tree/master/Practice/Python_Example)
+     - 220712: 01 ~ 08.py
+     - 220713: 09 ~ 13.py / ex01 ~ ex02.py
