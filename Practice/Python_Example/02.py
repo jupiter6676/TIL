@@ -20,4 +20,9 @@ for j in word:
     cnt += 1
 print(cnt)
 
-# 3) ??
+# 3)
+cnt = 0
+
+while word[cnt:]:
+    cnt += 1
+print(cnt)
