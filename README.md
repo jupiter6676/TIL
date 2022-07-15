@@ -6,8 +6,6 @@
 2. 실습
    - [Markdown_Practice](./Practice/01_Markdown_Practice)
 
-
-
 ## Git & GitHub
 
 1. 강의 노트
@@ -16,18 +14,16 @@
    - `push`와 `pull` 해보기
    - 기술 블로그로서의 깃허브 꾸미기
 
-
-
 ## GitHub 협업
 
 1. 강의 노트
+   
    - [GitHub_Contribution](./Notes/03_GitHub_Contribution.md)
 
 2. 실습
+   
    - PR
    - [제출 링크](https://github.com/kdt-hphk/test-01.git)
-
-
 
 ## 특강 【Series 1】
 
@@ -38,8 +34,6 @@
    - [Recruit Research](./Practice/04_research_practice.md)
    - [제출 링크](https://github.com/jupiter6676/job-research.git)
 
-
-
 ## Python
 
 1. 강의 노트
@@ -47,6 +41,7 @@
    - [Python (2)](./Notes/06_Python_(2).md)
    - [Python (3)](./Notes/07_Python_(3).md)
    - [Python (4)](./Notes/08_Python_(4).md)
+   - [Python_(5)_PJT](./Notes/09_Python_(5)_PJT.md)
 2. 실습
    - [CodeUp 100제](https://github.com/jupiter6676/TIL/tree/master/Algorithm/CodeUp_100)
    - [백준 단계별로 풀기](https://www.acmicpc.net/step)
@@ -54,4 +49,4 @@
      - 220712: 01 ~ 08.py
      - 220713: 09 ~ 13.py / ex01 ~ ex02.py
      - 220714: 14 ~ 18.py
-
+   - [PJT](https://github.com/jupiter6676/TIL/tree/master/Practice/Python_Example/PJT_1)
