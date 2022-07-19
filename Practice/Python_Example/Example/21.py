@@ -6,3 +6,19 @@ n = int(input())
 while n > 0:
     print(n % 10, end='')
     n //= 10
+
+while n > 0:
+    print(n % 10, end='')
+    n //= 10
+
+# 2.
+'''
+res = 0
+while n:
+    res *= 10
+    res += n % 10
+    
+    n //= 10
+
+print(res)
+'''

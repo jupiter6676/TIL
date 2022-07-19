@@ -1,7 +1,8 @@
-n = input()
+n = int(input())
 
 res = 0
-for digit in n:
-    res += int(digit)
+while n > 0:
+    res += (n % 10)
+    n //= 10
 
 print(res)
