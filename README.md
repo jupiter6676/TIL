@@ -43,14 +43,12 @@
    - [Python (4)](./Notes/01_Lecture/08_Python_(4).md)
    - [Python (5) PJT](./Notes/01_Lecture/09_Python_(5)_PJT.md)
    - [Python (6)](./Notes/01_Lecture/10_Python_(6).md)
+   - [Python (7)](./Notes/01_Lecture/11_Python_(7).md)
 2. 실습
    - [CodeUp 100제](https://github.com/jupiter6676/TIL/tree/master/Algorithm/CodeUp_100)
-   - [백준 단계별로 풀기](https://www.acmicpc.net/step)
+   - [백준 단계별로 풀기](https://github.com/jupiter6676/TIL/tree/master/Algorithm/BaekJoon/Step)
+   - [SW Expert Academy](https://github.com/jupiter6676/TIL/tree/master/Algorithm/SWEA)
    - [예제](https://github.com/jupiter6676/TIL/tree/master/Practice/Python_Example)
-     - 220712: 01 ~ 08.py
-     - 220713: 09 ~ 13.py / ex01 ~ ex02.py
-     - 220714: 14 ~ 18.py
-     - 220718: 19.py / ex03 ~ ex11.py
    - [PJT](https://github.com/jupiter6676/TIL/tree/master/Practice/Python_Example/PJT_1)
 
 # E-Learning
