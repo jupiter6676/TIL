@@ -44,6 +44,7 @@
    - [Python (5) PJT](./Notes/01_Lecture/09_Python_(5)_PJT.md)
    - [Python (6)](./Notes/01_Lecture/10_Python_(6).md)
    - [Python (7)](./Notes/01_Lecture/11_Python_(7).md)
+   - [Python (8)](./Notes/01_Lecture/12_Python_(8).md)
 2. 실습
    - [CodeUp 100제](https://github.com/jupiter6676/TIL/tree/master/Algorithm/CodeUp_100)
    - [백준 단계별로 풀기](https://github.com/jupiter6676/TIL/tree/master/Algorithm/BaekJoon/Step)
