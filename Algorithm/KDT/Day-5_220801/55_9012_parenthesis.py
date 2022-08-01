@@ -20,7 +20,7 @@ for test_case in range(T):
                 stack.pop()
             # 스택이 비어있을 때
             # 열린 괄호가 없는데 닫힌 괄호가 왔다면 VPS가 아님
-            # 
+            # is_valid = False
             else:
                 is_valid = False
                 break
