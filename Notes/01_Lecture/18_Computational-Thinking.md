@@ -180,11 +180,11 @@
 
     - 위 주장이 사실인지 확인하기 위해서 반드시 뒤집어야 하는 카드는 몇 개일까?
 
-      ![image-20220729104521953](Assets/18_Algorithm_(5).assets/image-20220729104521953.png)
+      ![image-20220729104521953](Assets/18_Computational-Thinking.assets/image-20220729104521953.png)
 
     - 정답은 F와 5 2장
 
-      ![image-20220729104725209](Assets/18_Algorithm_(5).assets/image-20220729104725209.png)
+      ![image-20220729104725209](Assets/18_Computational-Thinking.assets/image-20220729104725209.png)
 
       - F를 뒤집어서 반대편이 0인지 확인해야 하고,
       - 5를 뒤집어서 반대편이 F가 아닌지 확인해야 한다.

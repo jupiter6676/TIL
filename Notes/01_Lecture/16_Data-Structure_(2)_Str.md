@@ -2,7 +2,7 @@
 
 ## (1) 오르막길
 
-![image-20220727092013346](Assets/16_Algorithm_(3).assets/image-20220727092013346.png)
+![image-20220727092013346](Assets/16_Data-Structure_(2)_Str.assets/image-20220727092013346.png)
 
 - 뒤에 있는 값을 기준으로, 이전의 값과 비교
   - heights[i - 1] < heights[i]
