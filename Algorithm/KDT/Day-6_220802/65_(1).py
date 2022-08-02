@@ -1,5 +1,4 @@
 # [Programmers] 숫자 문자열과 영단어
-# 테스트 케이스 10 실패...
 
 def solution(s):
     answer = ''
