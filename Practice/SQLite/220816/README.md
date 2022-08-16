@@ -130,4 +130,18 @@ sido
 
 ### 자유롭게 조합해서 원하는 데이터를 출력해보세요.
 
-> 예) 허리 둘레가 x이상이면서 몸무게가 y이하인 사람
+> BMI 필드를 추가해서 BMI, weight, height 필드에 해당하는 값을 출력
+
+```sql
+SELECT weight*10000/(height*height) AS BMI, weight, height FROM healthcare LIMIT 5;
+```
+
+```
+BMI|weight|height
+22|60|165
+28|65|150
+22|55|155
+27|70|160
+20|50|155
+```
+
