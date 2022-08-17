@@ -231,3 +231,13 @@ SELECT id, blood_pressure,
   AS '혈압 상태'
   FROM healthcare WHERE blood_pressure != '' LIMIT 5;
 ```
+
+```
+id  blood_pressure  혈압 상태
+--  --------------  -----
+1   127             고혈압
+2   110             정상
+3   123             고혈압
+4   134             고혈압
+5   144             고혈압
+```
