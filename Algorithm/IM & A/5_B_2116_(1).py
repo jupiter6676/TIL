@@ -41,7 +41,7 @@ N = int(input())
 dices = [[] for _ in range(N)]
 
 
-# i번째 주사위의 앞면, 뒷면 쌍들
+# i번째 주사위의 윗면, 아랫면 쌍들
 for i in range(N):
     A, B, C, D, E, F = map(int, input().split())
 

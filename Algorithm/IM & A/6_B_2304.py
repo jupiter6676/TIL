@@ -27,7 +27,7 @@ is_asc = True
 # 시작한 곳의 한 칸 뒤부터 마지막까지 반복
 for i in range(first + 1, last + 1):
     if is_asc:
-        # 현재까지 저장한 가장 최근의 높이 stack[-1]
+        # 현재까지 저장한 높이 중 가장 최근의 높이 stack[-1]
         # 보다 현재의 높이가 더 크면, 스택에 새로운 높이를 쌓기
         if stack[-1] < pillar[i]:
             stack.append(pillar[i])
@@ -70,11 +70,11 @@ print(sum(stack))
 3 6
 5 6
 7 7
-답: 43 (난 50)
+답: 43
 
 3
 0 3
 1 2
 2 3
-답: 9 (난 12)
+답: 9
 '''
