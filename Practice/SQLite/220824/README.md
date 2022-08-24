@@ -122,6 +122,16 @@ genre.title = '재난'
 genre.save()
 ```
 
+```python
+# 반복문
+genres = ['액션', '드라마', '사극']
+
+for genre_name in genres:
+    genre = Genre()
+    genre.title = genre_name
+    genre.save()
+```
+
 
 
 ### 5. Queryset 메소드 `all` 을 활용해서 `Director` 테이블의 모든 데이터를 출력하는 코드를 작성하세요.
