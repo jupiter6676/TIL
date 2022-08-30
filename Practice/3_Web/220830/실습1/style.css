@@ -1,0 +1,61 @@
+/* 최상단 제목 */
+.header {
+  text-align: center;
+  line-height: 8px;
+  margin: 30px 0;
+}
+
+/* 카드 전체 영역 */
+.cards {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* 카드 하나 영역 */
+.card {
+  width: 300px;
+  padding: 20px;
+}
+
+/* 카드의 이미지 */
+.card-image {
+  width: 100%;
+  border-radius: 5%;
+}
+
+/* 카드의 헤더 + 설명 */
+.card-body {
+  width: 100%;
+}
+
+/* 카드의 카테고리 + 제목 */
+.card-header {
+  line-height: 5px;
+  margin: 10px 0;
+}
+
+/* 카드의 카테고리 */
+.card-category {
+  font-size: 13px;
+  font-weight: bold;
+  color: #575757;
+
+  /* padding-left: 13px; */
+}
+
+/* 카드의 제목 */
+.card-title {
+  font-size: 15px;
+  font-weight: bold;
+  /* text-align: center; */
+}
+
+/* 카드의 설명 */
+.card-description {
+  font-size: 11px;
+  color: #767676;
+
+  /* padding-left: 12px; */
+}
