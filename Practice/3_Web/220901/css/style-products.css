@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  min-width: 1280px;
+  color: #333333;
+}
+
+/* 1. Navigation Bar */
+.header-container {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background-color: #eeeeee;
+}
+
+.nav-bar {
+  width: 1280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+
+.nav-logo {
+  margin-left: 2rem;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list-item {
+  margin-right: 1rem;
+  padding: 1rem;
+}
+
+.nav-list-item:hover {
+  background-color: #B2AFB2;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+/* 2. Articles */
+.articles-container {
+  display: flex;
+  justify-content: center;
+}
+
+.products-list {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 4rem 0;
+  width: 1280px;
+}
+
+.product-item {
+  width: 300px;
+
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 1rem 0 #cecece;
+  border-radius: 1rem;
+}
+
+.product-img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-bottom: .5rem;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* 6줄 이상 넘어가면 ...으로 생략 */
+.product-description {
+  display: -webkit-box;
+  height: 144px;  /* line-height × line-clapm */
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+/* 3. Footer */
+.footers-container {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.footer-list {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 4rem 6rem;
+}
+
+.footer-title {
+  font-size: 32px;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-img {
+  width: 64px;
+  height: 64px;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 1rem 0;
+}
+
+/* 4. Top Button */
+.top-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.button-img {
+  width: 2rem;
+  height: 2rem;
+}
