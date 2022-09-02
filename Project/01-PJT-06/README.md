@@ -21,9 +21,9 @@
 
     ```html
     <header>
-      <nav class="nav-bar">
-        ...
-      </nav>
+        <nav class="nav-bar">
+          ...
+        </nav>
     </header>
     ```
 
