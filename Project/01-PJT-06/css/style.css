@@ -4,8 +4,13 @@
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 40px;
+  min-width: 1200px;
   height: 80px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: white;
+  opacity: 0.9;
+  z-index: 1;
 }
 
 .nav-logo {
@@ -24,10 +29,107 @@
 }
 
 .nav-item:hover {
+  color: black;
   background-color: rgb(207, 207, 207);
   border-radius: 5px;
+  transform:scale(1.1);
 }
 
 .nav-list a {
   text-decoration: none;
+}
+
+.banner-img {
+  background-image: url(../assets/background.jpg);
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.contents {
+  display: flex;
+  min-width: 1000px;
+}
+
+.genre-list {
+  min-width: 300px;
+  flex: 2;
+  padding: 1rem;
+  position: sticky;
+  align-self: start;
+  top: 80px;  /* nav-bar의 height가 80px */
+  left: 0;
+}
+
+.genre-list-title {
+  font-weight: bold;
+}
+
+.genres {
+  list-style: none;
+  padding: 0;
+}
+
+.read {
+  text-align: center;
+  padding: 24px;
+}
+
+.movie-ranking {
+  min-width: 1200px;
+  display: flex;
+  flex: 8;
+  background-color: rgb(235, 235, 235);
+  padding: 24px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1200px;
+  justify-content: space-evenly;
+}
+
+.movie-card {
+  width: 300px;
+  margin: 0 50px;
+}
+.movie-img {
+  width: 100%;
+  border-radius: 1.5rem;
+}
+
+.movie-card {
+  width: 300px;
+  margin: 0 30px;
+  transition: 5s;
+}
+
+.movie-img:hover {
+  transform: scale(1.1);
+}
+
+.movie-name {
+  margin: 1.2rem 0 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+.footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
