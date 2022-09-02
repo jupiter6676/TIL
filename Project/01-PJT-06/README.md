@@ -23,7 +23,7 @@
     <header>
     	<nav class="nav-bar">
             ...
-        </nav>
+      </nav>
     </header>
     ```
 
