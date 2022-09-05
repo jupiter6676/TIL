@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  min-width: 1280px;
+  color: #333333;
+}
+
+.nav-bar {
+  height: 5rem;
+  background-color: rgba(244, 244, 244, 0.7);
+}
+
+/* .nav-list {
+  list-style: none;
+} */
+
+.nav-item {
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+}
+
+.nav-item:hover {
+  color: black;
+  background-color: #efefef;
+}
+
+.banner-img {
+  height: 700px;
+  background-image: url(../assets/apparel.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.about {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.about-img {
+  width: 500px;
+  border-radius: 1rem;
+}
+
+.footer-img {
+  width: 64px;
+}
