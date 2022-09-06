@@ -1,0 +1,11 @@
+/* 220906 실습 해설 */
+.nav {
+  height: 70px
+}
+
+.banner {
+  height: 700px;
+  background-image: url(../assets/apparel.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
