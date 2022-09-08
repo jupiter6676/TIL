@@ -33,15 +33,16 @@ if pos_[0] == 1:
     for i in range(N):
         # 상점이 북쪽
         if graph[i][0] == 1:
-            total += abs(pos_[1] - graph[i][1])
+            total += abs(pos_[1] - graph[i][1]) # x좌표의 차
         # 상점이 서쪽/동쪽
         elif graph[i][0] == 3 or graph[i][0] == 4:
-            diff_y = abs(pos_[2] - graph[i][2])
-            diff_x = abs(pos_[1] - graph[i][1])
+            diff_y = abs(pos_[2] - graph[i][2]) # y좌표의 차
+            diff_x = abs(pos_[1] - graph[i][1]) # x좌표의 차
             total += diff_x + diff_y
         # 상점이 남쪽
         else:
-            diff_y = H
+            diff_y = H  # y좌표의 차
+            # x좌표의 차 → 왼쪽으로 도는 거리와 오른쪽으로 도는 거리 중 더 작은 값
             diff_x = min(pos_[1] + graph[i][1], 2 * W - pos_[1] - graph[i][1])
             total += diff_x + diff_y
 
