@@ -9,7 +9,7 @@ sys.stdin = open("input.txt", "r")
 
 for t in range(1, 11):
     N = int(input())
-    lst = list(map(int, input().split()))   # N + 4의 크기
+    lst = list(map(int, input().split()))
 
     cnt = 0
 
