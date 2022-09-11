@@ -3,12 +3,12 @@
 # sys.stdin = open("input.txt", "r")
 
 for t in range(1, 11):
-    dump = int(input())
+    N = int(input())
     lst = list(map(int, input().split()))
 
     lst.sort()
 
-    for _ in range(dump):
+    for _ in range(N):
         lst[-1] -= 1
         lst[0] += 1
 
