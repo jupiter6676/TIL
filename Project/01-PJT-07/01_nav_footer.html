@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="02_home.html">
+        <img src="images/logo.png" alt="" style="height: 64px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 메뉴 -->
+      <div class="collapse navbar-collapse justify-content-between" id="toggle">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="02_home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="03_community.html">Community</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="email" class="col-form-label">Email address</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                        <p class="form-text">We'll never share your email with anyone else.</p>
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"></input>
+                      </div>
+                      <div class="mb-3">
+                        <input type="checkbox" class="form-check-input" id="check" name="check"></input>
+                        <label for="check" class="col-form-check-label">Check me out</label>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+      </div>
+    </div>
+  </nav>
+
+  
+  <footer class="text-bg-dark text-center py-5">
+    Web-bootstrap PJT, by 조본희, 최보영
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>
