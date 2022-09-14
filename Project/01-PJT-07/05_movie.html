@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="images/favicon-32x32.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <title>쇼생크 탈출</title>
+</head>
+<body>
+  <!-- 내비게이션 바 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="" style="height: 64px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 메뉴 -->
+      <div class="collapse navbar-collapse justify-content-between" id="toggle">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="03_community.html">Community</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="email" class="col-form-label">Email address</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                        <p class="form-text">We'll never share your email with anyone else.</p>
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"></input>
+                      </div>
+                      <div class="mb-3">
+                        <input type="checkbox" class="form-check-input" id="check" name="check"></input>
+                        <label for="check" class="col-form-check-label">Check me out</label>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <!-- 영화 포스터, 정보 -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 text-center">
+        <img src="images/movie1.jpg" height="500px">
+      </div>
+
+      <div class="col-md-6 p-5">
+        <h2>쇼생크 탈출</h2>
+        <p class="text-muted">The Shawshank Redemption, 1994</p>
+        <p><span class="fw-bold">개요</span> 드라마 | 미국 | 142분</p>
+        <p><span class="fw-bold">감독</span> 프랭크 다라본트</p>
+        <p><span class="fw-bold">출연</span> 팀 로빈스(앤디 듀프레인), 모건 프리먼(엘리스 보이드 레드 레딩)</p>
+        <p><span class="fw-bold">등급</span> [국내] 15세 관람가</p>
+        
+        <div class="mt-4">
+          <a class="btn btn-primary mb-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f" style="width: .5rem; height: .5rem;"></i></a>
+          <a class="btn btn-primary mb-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter" style="width: .5rem; height: .5rem;"></i></a>
+          <a class="btn btn-primary mb-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google" style="width: .5rem; height: .5rem;"></i></a>
+          <a class="btn btn-primary mb-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram" style="width: .5rem; height: .5rem;"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 줄거리 -->
+    <div class="row">
+      <div class="mb-5">
+        <h3>줄거리</h3>
+        <hr class="w-25">
+        <p>촉망 받던 은행 부지점장 ‘앤디(팀 로빈슨 分)’는 아내와 그 애인을 살해한 혐의로 종신형을 받고 쇼생크 교도소에 수감된다. 강력범들이 수감된 이곳에서 재소자들은 짐승 취급 당하고, 혹여 간수 눈에 잘못 보였다가는 개죽음 당하기 십상이다. 처음엔 적응 못하던 ‘앤디’는 교도소 내 모든 물건을 구해주는 ‘레드(모건 프리먼 分)’와 친해지며 교도소 생활에 적응하려 하지만, 악질 재소자에게 걸려 강간까지 당한다.<br>
+        그러던 어느 날, 간수장의 세금 면제를 도와주며 간수들의 비공식 회계사로 일하게 되고, 마침내는 소장의 검은 돈까지 관리해주게 된다. 덕분에 교도소 내 도서관을 열 수 있게 되었을 무렵, 신참내기 ‘토미(길 벨로우스 分)’로부터 ‘앤디’의 무죄를 입증할 기회를 얻지만, 노튼 소장은 ‘앤디’를 독방에 가두고 ‘토미’를 무참히 죽여버리는데...</p>
+        </div>
+
+      <div>
+        <h3>동영상</h3>
+        <hr class="w-25">
+      </div>
+    </div>
+
+    <!-- 동영상 -->
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/NmzuHjWmXOc" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/6hB3S9bIaco" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/QTxBBiM3kqA" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 평점 -->
+    <div class="row">
+      <div>
+        <h3>평점</h3>
+        <hr class="w-25">
+
+        <div class="row">
+          <div class="d-flex justify-content-start small text-warning mb-2">
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-fill me-1"></div>
+          </div>
+          <p>진짜 쩐다... 내생의 최고의 영화였음...</p>
+          <p class="text-muted py-1">영화광 | 2013.06.17 08:25</p>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="d-flex justify-content-start small text-warning mb-2">
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-fill me-1"></div>
+            <div class="bi-star-half me-1"></div>
+            <div class="bi-star me-1"></div>
+            <div class="bi-star me-1"></div>
+          </div>
+          <p>무난하게 재밌음</p>
+          <p class="text-muted py-1">재밌는 영화 | 2013.06.17 08:25</p>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-bg-dark text-center py-5">
+    Web-bootstrap PJT, by 조본희, 최보영
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

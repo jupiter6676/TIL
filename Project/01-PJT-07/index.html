@@ -5,13 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <title>Document</title>
+  <link rel="icon" href="images/favicon-32x32.png">
+  <title>Movie Rec</title>
 </head>
 <body>
   <!-- 내비게이션 바 -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="02_home.html">
+      <a class="navbar-brand" href="index.html">
         <img src="images/logo.png" alt="" style="height: 64px;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle">
@@ -22,7 +23,7 @@
       <div class="collapse navbar-collapse justify-content-between" id="toggle">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="02_home.html">Home</a>
+            <a class="nav-link active" href="index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="03_community.html">Community</a>
@@ -94,17 +95,20 @@
     </button>
   </div>
   
+  <h2 class="fw-bold text-center py-4">Boxoffice</h2>
+
   <!-- 영화 -->
-  <h2 class="fw-bold text-center py-4 mt-5">Boxoffice</h2>
   <div class="container justify-content-center mb-5">
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
       <div class="col">
-        <div class="card h-100">
-          <img src="images/movie1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="05_movie.html" style="text-decoration: none; color:black;">
+          <div class="card h-100">
+            <img src="images/movie1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col">
         <div class="card h-100">
@@ -149,7 +153,6 @@
     </div>
   </div>
 
-  <!-- 푸터 -->
   <footer class="text-bg-dark text-center py-5">
     Web-bootstrap PJT, by 조본희, 최보영
   </footer>
