@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>carousel</title>
+
+  <!-- CSS -->
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .carousel-items {
+      position: relative;
+      width: 20rem;
+      height: 10rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .carousel-item {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: none;  /* 그대로 덮어씌우는 방법은? */
+    }
+
+    .active {
+      display: block;
+      animation: active 1.5s;
+    }
+    @keyframes active {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="carousel-items">
+      <div class="carousel-item active" style="background-color: red;">1</div>
+      <div class="carousel-item" style="background-color: yellow;">2</div>
+      <div class="carousel-item" style="background-color: green;">3</div>
+      <div class="carousel-item" style="background-color: blue;">4</div>
+    </div>
+
+    <div>
+      <button id="btn-prev">Previous</button>
+      <button id="btn-next">Next</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    // Previous 버튼
+    const btnPrev = document.querySelector('#btn-prev');
+    btnPrev.addEventListener('click', function() {
+      const currActive = document.querySelector('.active'); // 현재 슬라이드(active)
+      const items = document.querySelectorAll('.carousel-item');  // 모든 슬라이드 배열(과 같은 객체)
+      const currIdx = [...items].indexOf(currActive); // 모든 슬라이드를 배열로 만든 후, 현재 슬라이드의 인덱스를 가져옴
+
+      console.log(currActive, items, currIdx);
+
+      currActive.classList.toggle('active');
+      // 음수가 되지 않게, 배열 길이만큼 더해준 후 -1
+      items[(items.length + currIdx - 1) % items.length].classList.toggle('active');
+    });
+
+    // Next 버튼
+    const btnNext = document.querySelector('#btn-next');
+    btnNext.addEventListener('click', function() {
+      const currActive = document.querySelector('.active');
+      const items = document.querySelectorAll('.carousel-item');
+      const currIdx = [...items].indexOf(currActive);
+
+      console.log(currActive, items, currIdx);
+
+      currActive.classList.toggle('active');
+      items[(currIdx + 1) % items.length].classList.toggle('active');
+    });
+
+    // 자동으로 다음 슬라이드로 넘겨줌.
+    setInterval(function() {
+      const btnNext = document.querySelector('#btn-next');
+      btnNext.click();
+    }, 5000);
+  </script>
+</body>
+</html>

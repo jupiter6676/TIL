@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>modal</title>
+
+  <!-- CSS -->
+  <style>
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(171, 171, 171, 0.755);
+
+      display: none;
+    }
+    .active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <button id="open-modal">modal 열기</button>
+
+  <div class="modal">
+    <button id="close-modal">modal 닫기</button>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const modal = document.querySelector('.modal');
+
+    // modal toggle 함수
+    const modalToggle = function(e) {
+      modal.classList.toggle('active');
+    };
+
+    // modal 열기
+    const btnOpenModal = document.querySelector('#open-modal');
+    btnOpenModal.addEventListener('click', modalToggle);
+
+    // modal 닫기 1 - 버튼
+    const btnCloseModal = document.querySelector('#close-modal');
+    btnCloseModal.addEventListener('click', function(e) {
+      modal.classList.toggle('active');
+
+      // 버블링 때문에 div에서 active가 2번 toggle되는 것을 방지
+      e.stopPropagation();
+    });
+
+    // modal 닫기 2 - 배경
+    modal.addEventListener('click', modalToggle);
+  </script>
+</body>
+</html>
