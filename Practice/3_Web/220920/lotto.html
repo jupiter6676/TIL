@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또 번호 추천</title>
+  <style>
+    #btn-lotto {
+      display: block;
+      width: 5rem;
+      height: 3rem;
+      margin: 1rem auto;
+    }
+    .ball-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .ball {
+      width: 5rem;
+      height: 5rem;
+      margin: 1rem;
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">로또 번호 추천</h1>
+  <button type="button" id="btn-lotto">번호 추천</button>
+
+  <div class="container">
+    <div class="ball-container"></div>
+  </div>
+
+  <div id="logs">
+    <h3 style="text-align: center;">기록</h3>
+  </div>
+
+  <!-- lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+  <!-- JS -->
+  <script>
+    const container = document.querySelector('.container');
+    const btnLotto = document.querySelector('#btn-lotto');
+    
+    btnLotto.addEventListener('click', function() {
+      // 기존에 있던 컨테이너 삭제
+      const existingContainer = document.querySelector('.ball-container');
+      existingContainer.remove();
+
+      // 새로운 컨테이너 생성
+      const ballContainer = document.createElement('div');
+      ballContainer.setAttribute('class', 'ball-container');
+      container.appendChild(ballContainer);
+
+      // 랜덤 번호 6개 배열 생성 → lodash
+      // 오름차순 정렬 → .sort(비교함수)
+      let lottoNums = _.sampleSize(_.range(1, 46), 6).sort((a, b) => a - b);
+
+      // 나온 모든 번호를 기록
+      const numsLog = document.createElement('p');
+      numsLog.style.textAlign = 'center';
+      numsLog.innerText = lottoNums.join(', ');
+
+      const logs = document.querySelector('#logs');
+      logs.appendChild(numsLog);
+
+      // 공 6개 생성
+      for (let i = 0; i < 6; i++) {
+        const ball = document.createElement('div');
+        ball.setAttribute('class', 'ball');
+        ball.innerText = lottoNums[i];
+
+        if (lottoNums[i] <= 10) {
+          ball.style.backgroundColor = '#ffff87'  // 노란색
+        } else if (lottoNums[i] <= 20) {
+          ball.style.backgroundColor = '#89baff'  // 파란색
+        } else if (lottoNums[i] <= 30) {
+          ball.style.backgroundColor = '#ff8989'  // 빨간색
+        } else if (lottoNums[i] <= 40) {
+          ball.style.backgroundColor = '#c5c5c5'  // 회색
+        } else {
+          ball.style.backgroundColor = '#c4ff97'  // 초록색
+        }
+
+        ballContainer.appendChild(ball);
+      }
+    });
+  </script>
+</body>
+</html>
