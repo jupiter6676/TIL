@@ -16,14 +16,14 @@ for t in range(1, 11):
 
     # 열부터 탐색
     for j in range(K):
-        is_red = 0
+        is_red = False
 
         for i in range(K):
-            if graph[i][j] == N and is_red == 0:
-                is_red = 1
+            if graph[i][j] == N and not is_red:
+                is_red = True
             
-            if is_red == 1 and graph[i][j] == S:
+            if is_red and graph[i][j] == S:
                 total += 1
-                is_red = 0
+                is_red = False
 
     print(f'#{t} {total}')
