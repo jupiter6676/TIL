@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>전생 테스트</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <form action="/past-life-result/" method="GET">
+    <label class="form-label" for="user-name">이름을 입력하세요.</label>
+    <input type="text" class="form-control mb-3" id="user-name" name="user-name" autofocus>
+    <input type="submit" value="전생 확인하기" class="btn btn-primary">
+  </form>
+</div>
+{% endblock %}

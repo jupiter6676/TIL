@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>전생 테스트 결과</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h1 class="mb-3">{{ name }}님의 전생은 {{ job }}입니다.</h1>
+  <a href="/past-life/" class="btn btn-primary">다시 확인하기</a>
+</div>
+{% endblock %}

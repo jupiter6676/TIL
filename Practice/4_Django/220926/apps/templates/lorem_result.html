@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>홀짝</title>
+{% endblock %}
+
+{% block content %}
+  <div class="text-center my-4">
+    {% for row in paras %}
+      <p>{{ row|join:" " }}</p>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock %}

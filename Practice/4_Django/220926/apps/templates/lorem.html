@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>랜덤 한글 텍스트 생성</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <form action="/lorem-result/" method="GET">
+    <label class="form-label" for="para">문단의 수</label>
+    <input type="text" class="form-control mb-3" id="para" name="para" autofocus>
+    <label class="form-label" for="word">문단 별 단어의 수</label>
+    <input type="text" class="form-control mb-3" id="word" name="word">
+    <input type="submit" value="생성" class="btn btn-primary">
+  </form>
+</div>
+{% endblock %}

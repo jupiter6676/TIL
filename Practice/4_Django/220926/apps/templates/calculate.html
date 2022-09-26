@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>사칙연산</title>
+{% endblock %}
+
+{% block content %}
+<div class="text-center my-4">
+  <h1>{{ num1 }} + {{ num2 }} = {{ add }}</h1>
+  <h1>{{ num1 }} - {{ num2 }} = {{ sub }}</h1>
+  <h1>{{ num1 }} * {{ num2 }} = {{ mul }}</h1>
+  <h1>{{ num1 }} // {{ num2 }} = {{ div }}</h1>
+</div>
+{% endblock %}
