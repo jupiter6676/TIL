@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5" style="max-width: 500px;">
+  <h2 class="text-center mb-5">To-do List</h2>
+  <!-- form 작성 -->
+  <div>
+    <form action="{% url 'todos:create' %}">
+      <label for="content" class="form-label">할 일</label>
+      <input type="text" class="form-control mb-3" name="content" id="content" maxlength="80" autofocus>
+      
+      <label for="priority" class="form-label">우선순위</label>
+      <input type="number" class="form-control mb-3" name="priority" id="priority">
+
+      <label for="deadline" class="form-label">마감 기한</label>
+      <input type="date" class="form-control mb-4" name="deadline" id="deadline">
+
+      <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-primary" value="추가">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container my-5" style="max-width: 700px;">
+  <!-- Todo list -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">할 일</th>
+        <th scope="col">우선순위</th>
+        <th scope="col">마감 기한</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}
+        <tr>
+          <th scope="row">{{ todo.id }}</th>
+          <td>{{ todo.content }}</td>
+          <td>{{ todo.priority }}</td>
+          <td>{{ todo.deadline|date:'Y-m-d' }}</td>
+          <td><a href="{% url 'todos:delete' todo.id %}" style="text-decoration: none;">삭제</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
