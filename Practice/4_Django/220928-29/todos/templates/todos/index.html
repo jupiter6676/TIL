@@ -6,14 +6,26 @@
   <!-- form 작성 -->
   <div>
     <form action="{% url 'todos:create' %}">
-      <label for="content" class="form-label">할 일</label>
-      <input type="text" class="form-control mb-3" name="content" id="content" maxlength="80" autofocus>
+      <div class="input-group mb-3">
+        <span class="input-group-text justify-content-center" style="width: 6rem;">할 일</span>
+        <input type="text" class="form-control" name="content" id="content" maxlength="80" autofocus>
+      </div>
       
-      <label for="priority" class="form-label">우선순위</label>
-      <input type="number" class="form-control mb-3" name="priority" id="priority">
+      <div class="input-group mb-3">
+        <span class="input-group-text justify-content-center" style="width: 6rem;">우선순위</span>
+        <select name="priority" class="form-select">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
 
-      <label for="deadline" class="form-label">마감 기한</label>
-      <input type="date" class="form-control mb-4" name="deadline" id="deadline">
+      <div class="input-group mb-3">
+        <span class="input-group-text justify-content-center" style="width: 6rem;">마감 기한</span>
+        <input type="date" class="form-control" name="deadline" id="deadline">
+      </div>
 
       <div class="d-flex justify-content-end">
         <input type="submit" class="btn btn-primary" value="추가">
@@ -22,27 +34,47 @@
   </div>
 </div>
 
-<div class="container my-5" style="max-width: 700px;">
+<div class="container my-5" style="max-width: 1200px;">
   <!-- Todo list -->
   <table class="table">
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">할 일</th>
         <th scope="col">우선순위</th>
+        <th scope="col">할 일</th>
+        <th scope="col">생성 날짜</th>
         <th scope="col">마감 기한</th>
-        <th scope="col"></th>
+        <th scope="col">진행 상태</th>
+        <th scope="col">상태 변경</th>
+        <th scope="col">삭제</th>
       </tr>
     </thead>
     <tbody>
       {% for todo in todos %}
-        <tr>
-          <th scope="row">{{ todo.id }}</th>
-          <td>{{ todo.content }}</td>
-          <td>{{ todo.priority }}</td>
-          <td>{{ todo.deadline|date:'Y-m-d' }}</td>
-          <td><a href="{% url 'todos:delete' todo.id %}" style="text-decoration: none;">삭제</a></td>
-        </tr>
+        {% if todo.completed == True %}
+          <!-- 취소선 긋기 -->
+          <tr>
+            <th scope="row" style="vertical-align: middle;" id="tbody-item"><s>{{ todo.id }}</s></th>
+            <td style="vertical-align: middle;" id="tbody-item"><s>{{ todo.priority }}</td>
+            <td style="vertical-align: middle;" id="tbody-item"><s>{{ todo.content }}</s></td>
+            <td style="vertical-align: middle;" id="tbody-item date"><s>{{ todo.created_at|date:'Y-m-d' }}</s></td>
+            <td style="vertical-align: middle;" id="tbody-item date"><s>{{ todo.deadline|date:'Y-m-d' }}</s></td>
+            <td style="vertical-align: middle;" id="tbody-item"><s>{{ todo.completed }}</s></td>
+            <td style="vertical-align: middle;"><a href="{% url 'todos:update' todo.id %}" class="btn btn-primary">변경</a></td>
+            <td style="vertical-align: middle;"><a href="{% url 'todos:delete' todo.id %}" class="btn btn-danger" >삭제</a></td>
+          </tr>
+        {% else %}
+          <tr>
+            <th scope="row" style="vertical-align: middle;" id="tbody-item">{{ todo.id }}</th>
+            <td style="vertical-align: middle;" id="tbody-item">{{ todo.priority }}</td>
+            <td style="vertical-align: middle;" id="tbody-item">{{ todo.content }}</td>
+            <td style="vertical-align: middle;" id="tbody-item date">{{ todo.created_at|date:'Y-m-d' }}</td>
+            <td style="vertical-align: middle;" id="tbody-item date">{{ todo.deadline|date:'Y-m-d' }}</td>
+            <td style="vertical-align: middle;" id="tbody-item">{{ todo.completed }}</td>
+            <td style="vertical-align: middle;"><a href="{% url 'todos:update' todo.id %}" class="btn btn-primary">변경</a></td>
+            <td style="vertical-align: middle;"><a href="{% url 'todos:delete' todo.id %}" class="btn btn-danger" >삭제</a></td>
+          </tr>
+        {% endif %}
       {% endfor %}
     </tbody>
   </table>

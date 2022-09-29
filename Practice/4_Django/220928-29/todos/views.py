@@ -11,6 +11,7 @@ def index(request):
 
     return render(request, 'todos/index.html', context)
 
+
 def create(request):
     content = request.GET.get('content')
     priority = request.GET.get('priority')
@@ -20,7 +21,17 @@ def create(request):
     
     return redirect('todos:index')
 
+
 def delete(request, pk):
     Todo.objects.get(id=pk).delete()
     
+    return redirect('todos:index')
+
+
+def update(request, pk):
+    todo = Todo.objects.get(id=pk)
+
+    todo.completed = not todo.completed
+    todo.save()
+
     return redirect('todos:index')
