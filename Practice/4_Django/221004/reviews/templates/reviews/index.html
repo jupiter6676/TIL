@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>영화 리뷰 커뮤니티</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-5">영화 리뷰 커뮤니티</h1>
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">리뷰 번호</th>
+        <th scope="col">리뷰 제목</th>
+        <th scope="col">작성 시간</th>
+        <th scope="col">마지막 수정 시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <a href="{% url 'reviews:detail' post.pk %}" style="text-decoration: none; width: 100%; display: table">
+        <tr onclick="goToDetail('{{ post.pk }}')">
+          <th scope="row">{{ post.pk }}</th>
+          <td>{{ post.title }}</td>
+          <td>{{ post.created_at|date:'Y년 m월 d일 H:i' }}</td>
+          <td>{{ post.updated_at|date:'Y년 m월 d일 H:i' }}</td>
+        </tr>
+      </a>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-end">
+    <a href="{% url 'reviews:create' %}" class="btn btn-primary">리뷰 작성</a>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+  function goToDetail(post_pk) {
+    // pk= 다음에 문자열은 안 되는 것 같다..
+    // https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag
+    location.href = "{% url 'reviews:detail' pk=0 %}".replace('0', post_pk);  // 왜 되지????
+  }
+</script>
+{% endblock %}
