@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <h1>index</h1>
+{% block title %}
+<title>게시판</title>
+{% endblock %}
 
-  <a href="{% url 'articles:create' %}" class="btn btn-primary">글 작성하기</a>
+{% block content %}
+  <div class="container my-5">
+    <h1 class="text-center mb-5">게시판</h1>
+
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">리뷰 번호</th>
+          <th scope="col">리뷰 제목</th>
+          <th scope="col">작성 시간</th>
+          <th scope="col">마지막 수정 시간</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for article in articles %}
+        <a href="{% url 'articles:detail' article.pk %}" style="text-decoration: none; width: 100%; display: table">
+          <tr onclick="goToDetail('{{ article.pk }}')" style="vertical-align: middle;">
+            <th scope="row">{{ article.pk }}</th>
+            <td>{{ article.title }}</td>
+            <td>{{ article.created_at|date:'Y년 m월 d일 H:i' }}</td>
+            <td>{{ article.updated_at|date:'Y년 m월 d일 H:i' }}</td>
+            <td>
+              <a class="btn btn-outline-primary" href="{% url 'articles:update' article.pk %}">수정</a>
+              <a class="btn btn-outline-danger ms-2" href="{% url 'articles:delete' article.pk %}">삭제</a>
+            </td>
+          </tr>
+        </a>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end">
+      <a href="{% url 'articles:create' %}" class="btn btn-primary">작성하기</a>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    function goToDetail(article_pk) {
+      location.href = "{% url 'articles:detail' pk=0 %}".replace('0', article_pk);
+    }
+  </script>
 {% endblock %}

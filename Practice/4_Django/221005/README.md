@@ -174,5 +174,159 @@
 
 # 4. Read
 
-1. 
+1. `views.py`의 index 함수 수정하기
+
+   ```python
+   def index(request):
+       articles = Article.objects.all()
+       
+       context = {
+           'articles': articles,
+       }
+   
+       return render(request, 'articles/index.html', context)
+   ```
+
+2. 위의 context를 이용하여 `index.html`을 적절히 작성하기
+
+3. `urls.py`에 detail 경로 추가하기
+
+   ```python
+   urlpatterns = [
+       # ...
+       path('detail/<int:pk>', views.detail, name='detail'),
+   ]
+   ```
+
+4. `views.py`에 detail 함수 작성하기
+
+   ```python
+   def detail(request, pk):
+       article = Article.objects.get(pk=pk)
+   
+       context = {
+           'article': article,
+       }
+   
+       return render(request, 'articles/detail.html', context)
+   ```
+
+5. detail 함수의 context를 활용하여 `detail.html`을 작성하기
+
+   ```html
+   <div class="container my-5">
+     <div class="d-flex justify-content-between align-items-center">
+       <h1>{{ article.title }}</h1>
+       <div class="mx-5">
+         <a class="btn btn-outline-primary" href="">수정</a>
+         <a class="btn btn-outline-danger ms-2" href="">삭제</a>
+       </div>
+     </div>
+     <hr/>
+   
+     <p style="min-height: 300px" id="content">{{ article.content }}</p>
+     <hr/>
+     <a class="btn btn-outline-primary" href="{% url 'articles:index' %}">목록으로</a>
+   </div>
+   ```
+
+6. `views.py`의 create 함수 수정하기
+
+   ```python
+   def create(request):
+       # 사용자가 입력한 form data 받아오기
+       # or None: ModelForm이 항상 에러 메시지를 띄우는 걸 방지
+       form = ArticleForm(request.POST or None)
+   
+       # form data가 유효하면
+       if form.is_valid():
+           new_article = form.save()   # DB에 저장
+           return redirect('articles:detail', new_article.pk)   # 세부 페이지로 이동
+   
+       # 사용자가 입력할 form 양식을 템플릿에 보여주기
+       context = {
+           'form': form,
+       }
+   
+       return render(request, 'articles/create.html', context)
+   ```
+
+
+
+# 5. Delete
+
+1. `urls.py`에 delete 경로 추가하기
+
+   ```python
+   urlpatterns = [
+       # ...
+       path('delete/<int:pk>', views.delete, name='delete'),
+   ]
+   ```
+
+2. `views.py`에 delete 함수 작성하기
+
+   ```python
+   def delete(request, pk):
+       Article.objects.get(pk=pk).delete()
+   
+       return redirect('articles:index')
+   ```
+
+3. `detail.html`의 a href에 url 태그를 통해, delete 요청을 보낼 수 있도록 하기
+
+   ```html
+   <a class="btn btn-outline-danger ms-2" href="">삭제</a>
+   ```
+
+
+
+# 6. Update
+
+1. `urls.py`에 update 경로 추가하기
+
+   ```python
+   urlpatterns = [
+       # ...
+       path('update/<int:pk>', views.update, name='update'),
+   ]
+   ```
+
+2. `views.py`에 update 함수 작성하기
+
+   ```python
+   def update(request, pk):
+       article = Article.objects.get(pk=pk)
+   
+       # 만약 사용자가 데이터를 새로 입력했다면,
+       if request.method == 'POST':
+           # 기존의 값을 새로운 값으로 변경한 form 데이터를 가져와서
+           form = ArticleForm(request.POST, instance=article)
+   
+           # 유효한지 검사한 후,
+           if form.is_valid():
+               form.save() # DB에 저장하고
+               return redirect('articles:detail', article.pk)  # 상세 페이지로 이동
+   
+       # 아직 글을 수정하지 않았다면
+       else:
+           # 기존의 값이 담긴 form 데이터를 가져오기
+           form = ArticleForm(instance=article)
+       
+       # 사용자가 입력할 form 양식을 템플릿에 보여주기
+       context = {
+           'article': article,
+           'form': form,
+       }
+   
+       return render(request, 'articles/update.html', context)
+   ```
+
+3. `detail.html`의 a href에 url 태그를 통해, update 요청을 보낼 수 있도록 하기
+
+   ```html
+   <a class="btn btn-outline-primary" href="{% url 'articles:update' article.pk %}">수정</a>
+   ```
+
+
 

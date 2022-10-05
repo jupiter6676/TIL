@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="container my-5">
-    <form action="{% url 'articles:create' %}" method="POST" class="form">
+    <form action="{% url 'articles:update' article.pk %}" method="POST" class="form">
       {% csrf_token %}
       
       <!-- views에서 form을 가져와서 bootstrap 테마로 보여주기 -->
