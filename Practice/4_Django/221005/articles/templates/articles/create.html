@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <div class="container my-5">
+    <form action="{% url 'articles:create' %}" method="POST" class="form">
+      {% csrf_token %}
+      
+      <!-- views에서 form을 가져와서 bootstrap 테마로 보여주기 -->
+      {% bootstrap_form form %}
+      
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'articles:index' %}" class="btn btn-outline-primary">목록으로</a>
+        
+        <div class="d-flex justify-content-end">
+          {% bootstrap_button button_type="submit" content="완료" extra_classes="me-2" %}
+          {% bootstrap_button button_type="reset" content="초기화" button_class="btn-outline-danger" %}
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
