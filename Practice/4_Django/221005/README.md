@@ -1,4 +1,4 @@
-# 1.
+# 1. 가상환경 및 패키지 설치
 
 1. 가상환경 설치 및 실행
 
@@ -23,7 +23,7 @@
 
 
 
-# 2.
+# 2. Django 프로젝트 및 앱 생성
 
 1. 최상위 폴더에 `templates` 폴더 생성 후, `base.html` 생성
 
@@ -83,7 +83,7 @@
 
 
 
-# 3. Create (feat. ModelForm)
+# 3. Create (ModelForm)
 
 1. `articles` 폴더 내 `urls.py`에 create 경로 추가
 
@@ -330,3 +330,35 @@
 
 
 
+# 7. Admin Site
+
+1. admin 계정 생성
+
+   ```bash
+   $ python manage.py createsuperuser
+   ```
+
+2. 모델의 record를 보기 위해, `articles` 폴더 내 `admin.py`에 등록하기
+
+   ```python
+   from django.contrib import admin
+   from .models import Article
+   
+   admin.site.register(Article)
+   ```
+
+3. admin 페이지에서 데이터 조작해보기
+
+
+
+# 8. Static Files
+
+1. `articles` 폴더 내 `static/images` 폴더 생성 후, 해당 폴더 안에 아무 이미지 넣기
+
+2. img 태그의 src 속성에 다음과 같이 적기
+
+   ```html
+   <!-- Static File -->
+   {% load static %}
+   <img src="{% static 'images/brandnew.jpg' %}">
+   ```
