@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+<title>글 작성하기</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <form action="{% url 'movies:create' %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <div class="d-flex justify-content-between my-4">
+      <a href="{% url 'movies:index' %}" class="btn btn-outline-primary">목록으로</a>
+      <div>
+        <button type="reset" class="btn btn-outline-danger">초기화</button>
+        <button type="submit" class="btn btn-primary ms-2">완료</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
