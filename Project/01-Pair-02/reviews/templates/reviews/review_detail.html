@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+{% comment %} <div class="container text-white ">
+  <h1 class="text-white">{{ info.title }}</h1>
+  <div class="col">
+    {{ info.created_at }}
+  </div>
+  <div class="col">
+    {{ info.star }}
+    {{ info.grade }}
+  </div>
+  <div class="col">
+    {{ info.content }}
+</div> {% endcomment %}
+
+
+
+<div class="d-flex justify-content-between align-items-center text-white">
+    <h1 class="text-white">{{ info.title }}</h1>
+    <div>
+
+    </div>
+</div>
+<div class="col text-white">
+    {{ info.star }}
+    {{ info.grade }}
+</div>
+<hr>
+
+<!-- white-space: pre; → textarea의 개행과 공백을 그대로 보여준다. -->
+<p class="text-white" style="min-height: 300px; white-space: pre;">{{ info.content }}</p>
+<hr>
+
+<div class="d-flex flex-column align-items-end">
+<p class="text-muted mb-3">마지막 수정 시간: {{ info.updated_at|date:'Y-m-d H:i' }}</p>
+<a class="btn btn-primary" href="{% url 'reviews:detail' info.movie_id %}">목록으로</a>
+</div>
+{% endblock %}

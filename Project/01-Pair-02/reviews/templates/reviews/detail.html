@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<!-- 영화 정보 -->
+<div class="d-flex">
+  {% if 'jpg' in info.img %}
+    <img src="{{ info.img }}" class="card-img-top" style="width: 350px; height: 500px;">
+  {% else %}
+    <img src="{% static 'logo.jpg' %}" class="card-img-top" style="width: 350px; height: 500px;">
+  {% endif %}
+  <div class="text-white ms-5">
+    <h1>{{info.title}}</h1>
+    <p class="mt-5">{{info.summary}}</p>
+  </div>
+</div>
+<!-- 리뷰 게시글 -->
+<div class="text-end my-3">
+  <a href="{% url 'reviews:create' info.pk %}" class="btn btn-primary">리뷰 작성</a>
+</div>
+
+<table class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성 시간</th>
+      <th scope="col">마지막 수정 시간</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-dark">
+    {% for review in reviews %}
+      <tr onclick="" style="vertical-align: middle;">
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{% url 'reviews:review_detail' review.pk %}" class="text-decoration-none">{{ review.title }}</a></td>
+        <td>{{ review.created_at|date:'Y-m-d H:i' }}</td>
+        <td>{{ review.updated_at|date:'Y-m-d H:i' }}</td>
+        <td class="d-flex h-auto justify-content-end">
+
+          <a class="btn btn-primary" href="{% url 'reviews:edit' review.pk %}">수정</a>
+          <form class='m-0' action="{% url 'reviews:delete' review.pk %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger ms-2">삭제</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

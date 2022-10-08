@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+<from action="", method="POST">
+    {% csrf_token %}
+    {% bootstrap_form movie_form %}
+    {# movie_form.as_p #}
+    <div class="text-end">{% bootstrap_button button_type="submit" content="등록" %}</div>
+</from>
+{% endblock %}

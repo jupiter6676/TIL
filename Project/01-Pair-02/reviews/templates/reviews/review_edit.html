@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+<form action="" method="POST" class="text-white">
+  {% csrf_token %}
+  {% bootstrap_form review_form %}
+  <div class="text-end">
+    <button type="submit" class="btn btn-primary">수정</button>
+  </div>
+</form>
+{% endblock %}

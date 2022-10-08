@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container d-flex row">
+  {% for content in contents %}
+    <div class="card col-4 m-2 p-0" style="width: 18rem;">
+      <a href="{% url 'reviews:detail' content.pk %}" class="text-decoration-none">
+        {% if 'jpg' in content.img %}
+        <img src="{{ content.img }}" class="card-img-top" style="height: 400px;">
+        {% else %}
+        <img src="{% static 'logo.jpg' %}" class="card-img-top" style="height: 400px;">
+        {% endif %}
+        <div class="card-body">
+          <p class="card-text text-center fw-bold">{{ content.title }}</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
