@@ -15,7 +15,7 @@ for _ in range(1, T + 1):
     new_nums_list = list()
 
     for i in range(N):
-        # [ZRO, 0]과 같은 형태로 저장
+        # [0, 'ZRO']과 같은 형태로 저장
         new_nums_list.append([nums_dict[nums_list[i]], nums_list[i]])
 
     new_nums_list = sorted(new_nums_list, key=lambda x: x[0])
