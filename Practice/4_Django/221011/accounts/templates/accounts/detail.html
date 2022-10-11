@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <p>{{ user.pk }}</p>
+  <p>username: {{ user.username }}</p>
+  <p>email: {{ user.email }}</p>
+</div>
+{% endblock content %}
