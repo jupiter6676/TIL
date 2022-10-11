@@ -286,5 +286,17 @@
       return render(request, 'accounts/signup.html', context)
   ```
 
-  
+
+
+# 4. 기타
+
+- Django Auth 기본
+  - https://docs.djangoproject.com/en/4.1/topics/auth/default/
+- Django User Model
+  - https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
+- Custominzing
+  - https://docs.djangoproject.com/en/4.1/topics/auth/customizing/
+- 비밀번호 암호화
+  - https://docs.djangoproject.com/en/3.2/topics/auth/passwords/
+  - https://d2.naver.com/helloworld/318732
 
