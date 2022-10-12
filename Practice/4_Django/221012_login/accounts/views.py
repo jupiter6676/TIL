@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm   # 회원가입, ModelForm(UserCreationForm)
 from django.contrib.auth.forms import AuthenticationForm    # 로그인, 일반 Form
 from django.contrib.auth import login as auth_login # 로그인
+from django.contrib.auth import logout as auth_logout # 로그아웃
 
 # Create your views here.
 def index(request):
@@ -43,6 +44,11 @@ def signup_complete(request):
 
 # 로그인 페이지
 def login(request):
+    # 이미 로그인 했을 때
+    # url에 /accounts/login/ 쳐도 로그인 창에 못 들어오도록
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
 
@@ -70,3 +76,10 @@ def detail(request, pk):
     }
 
     return render(request, 'accounts/detail.html', context)
+
+
+# 로그아웃
+def logout(request):
+    auth_logout(request)
+
+    return redirect('index')
