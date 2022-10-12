@@ -7,7 +7,13 @@ from django.contrib.auth import login as auth_login # 로그인
 
 # Create your views here.
 def index(request):
-    return render(request, 'accounts/index.html')
+    users = get_user_model().objects.all()
+
+    context = {
+        'users': users,
+    }
+
+    return render(request, 'accounts/index.html', context)
 
 
 # 회원가입 폼 페이지
@@ -53,3 +59,14 @@ def login(request):
     }
 
     return render(request, 'accounts/login.html', context)
+
+
+# 회원 정보 조회
+def detail(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+
+    context = {
+        'user': user,
+    }
+
+    return render(request, 'accounts/detail.html', context)
