@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>회원가입 완료</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">회원가입이 완료되었습니다.</h1>
+
+  <div class="text-center">
+    <a href="{% url 'index' %}" class="btn btn-outline-primary">메인 페이지로 이동</a>
+    <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
+  </div>
+</div>
+{% endblock content %}

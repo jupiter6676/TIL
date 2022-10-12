@@ -5,4 +5,4 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fileds = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
