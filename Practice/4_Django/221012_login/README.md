@@ -26,14 +26,18 @@ Django **Auth**를 활용한 회원 관리(회원가입 / 회원 조회 / 로그
 
 ---
 
-- Django 내장 회원가입 폼 **UserCreationForm**을 상속받은 **CustomUserCreationForm** 생성 후 활용
+- 회원가입
 
-  해당 폼은 아래 필드만 출력합니다.
+  - Django 내장 회원가입 폼 **UserCreationForm**을 상속받은 **CustomUserCreationForm** 생성 후 활용
 
-  - username
-  - email
-  - password1
-  - password2
+    해당 폼은 아래 필드만 출력합니다.
+  
+    - username
+  
+    - email
+  
+    - password1
+    - password2
   
 - 로그인
 
