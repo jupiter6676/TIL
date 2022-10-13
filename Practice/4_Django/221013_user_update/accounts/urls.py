@@ -8,6 +8,6 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),    # 회원 가입
     path('login/', views.login, name='login'),    # 로그인
     path('logout/', views.logout, name='logout'),    # 로그아웃
-    # path('<int:pk>', views.detail, name='detail'),    # 회원 정보 조회
-    # path('<int:pk>/update/', views.update, name='update'),    # 회원 정보 수정
+    path('<int:pk>', views.detail, name='detail'),    # 회원 정보 조회
+    path('<int:pk>/update/', views.update, name='update'),    # 회원 정보 수정
 ]
