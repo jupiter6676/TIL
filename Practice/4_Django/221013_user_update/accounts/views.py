@@ -14,6 +14,9 @@ def index(request):
 
 # 회원 가입 페이지
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
 
@@ -33,6 +36,9 @@ def signup(request):
 
 # 로그인 페이지
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
 
@@ -48,3 +54,13 @@ def login(request):
     }
 
     return render(request, 'accounts/login.html', context)
+
+
+# 로그아웃
+def logout(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
+
+    auth_logout(request)
+
+    return redirect('index')
