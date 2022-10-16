@@ -3,6 +3,10 @@ from pprint import pprint
 
 T = int(input())
 
+# R B W의 모든 경우의 수를 구한 다음 → i
+# 각 경우에 해당하는 R B W의 줄 수를 구하기 → colors[i][0] ~ colors[i] ~ 3
+# 총 i * 3의 반복문 돌기?
+
 for t in range(1, T + 1):
     N, M = map(int, input().split())    # 행, 열의 개수
     graph = [[''] * M for _ in range(N)]    # 입력과 상하 반전된 그래프
@@ -60,7 +64,7 @@ for t in range(1, T + 1):
             if graph[i][j] != new_graph[i][j]:
                 cnt += 1
 
-    print(f'{t} {cnt}')
+    print(f'#{t} {cnt}')
             
 
 '''
