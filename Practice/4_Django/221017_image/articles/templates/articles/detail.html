@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center px-3">
+    <h1>{{ article.title }}</h1>
+
+    <div>
+        <a class='btn btn-primary' href="{% url 'articles:update' article.pk %}">수정</a>
+        <a class='btn btn-danger' href="{% url 'articles:delete' article.pk %}">삭제</a>
+    </div>
+  </div>
+  <hr>
+
+  <div style="min-height: 300px" class="px-3">
+    {% if article.image %}
+      <div class="text-center mb-4">
+        <img src="{{ article.image.url }}" alt="{{ article.image }}" class="w-75">
+      </div>
+    {% endif %}
+
+    <p style="white-space: pre">{{ article.content }}</p>
+  </div>
+  <hr>
+
+  <div class="text-end">
+    <a class="btn btn-outline-primary" href="{% url 'articles:index' %}">목록으로</a>
+  </div>
+{% endblock %}
