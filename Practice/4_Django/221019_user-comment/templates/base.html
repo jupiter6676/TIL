@@ -59,7 +59,7 @@
             <!-- 로그인 X -->
             {% else %}
               <li class="nav-item">
-                <form action="{% url 'accounts:signup' %}" method="POST" class="m-0">
+                <form action="{% url 'accounts:signup' %}" method="GET" class="m-0">
                   {% csrf_token %}
                   {% if request.resolver_match.url_name == 'signup' %}
                     <input type="submit" class="nav-link active" style="background: none; border: none;" value="Signup">
@@ -69,7 +69,7 @@
                 </form>
               </li>
               <li class="nav-item">
-                <form action="{% url 'accounts:login' %}" method="POST" class="m-0">
+                <form action="{% url 'accounts:login' %}" method="GET" class="m-0">
                   {% csrf_token %}
                   {% if request.resolver_match.url_name == 'login' %}
                     <input type="submit" class="nav-link active" style="background: none; border: none;" value="Login">
