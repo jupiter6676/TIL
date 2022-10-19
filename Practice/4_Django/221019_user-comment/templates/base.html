@@ -35,13 +35,50 @@
                 <a class="nav-link" href="{% url 'articles:index' %}">HOME</a>
               {% endif %}
             </li>
-            <li class="nav-item">
-              {% if request.resolver_match.url_name == 'create' %}
-                <a class="nav-link active" href="{% url 'articles:create' %}">Write</a>
-              {% else %}
-                <a class="nav-link" href="{% url 'articles:create' %}">Write</a>
-              {% endif %}
-          </li>
+
+            <!-- 로그인 O -->
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                {% if request.resolver_match.url_name == 'create' %}
+                  <a class="nav-link active" href="{% url 'articles:create' %}">Write</a>
+                {% else %}
+                  <a class="nav-link" href="{% url 'articles:create' %}">Write</a>
+                {% endif %}
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">{{ request.user.username }}'s Page</a>
+              </li>
+
+              <li class="nav-item">
+                <form action="{% url 'accounts:logout' %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  <input type="submit" class="nav-link" style="background: none; border: none;" value="Logout">
+                </form>
+              </li>
+            <!-- 로그인 X -->
+            {% else %}
+              <li class="nav-item">
+                <form action="{% url 'accounts:signup' %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  {% if request.resolver_match.url_name == 'signup' %}
+                    <input type="submit" class="nav-link active" style="background: none; border: none;" value="Signup">
+                  {% else %}
+                    <input type="submit" class="nav-link" style="background: none; border: none;" value="Signup">
+                  {% endif %}
+                </form>
+              </li>
+              <li class="nav-item">
+                <form action="{% url 'accounts:login' %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  {% if request.resolver_match.url_name == 'login' %}
+                    <input type="submit" class="nav-link active" style="background: none; border: none;" value="Login">
+                  {% else %}
+                    <input type="submit" class="nav-link" style="background: none; border: none;" value="Login">
+                  {% endif %}
+                </form>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

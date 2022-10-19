@@ -7,6 +7,7 @@
     <h1>{{ article.title }}</h1>
   
     <div class="d-flex">
+      {% if request.user == article.user %}
         <a class='btn btn-primary' href="{% url 'articles:update' article.pk %}">수정</a>
 
         <!-- POST로 변경 -->
@@ -14,10 +15,13 @@
           {% csrf_token %}
           <input type="submit" value="삭제" class='btn btn-danger'>
         </form>
+      {% endif %}
     </div>
   </div>
-  <div class="text-end">
-    <p class="text-muted px-3">마지막 수정 시간: {{ article.updated_at }}</p>
+
+  <div class="d-flex justify-content-between">
+    <a href="{% url 'accounts:detail' article.user.pk %}" class="text-muted text-decoration-none px-3">{{ article.user }}</a>
+    <p class="text-muted px-3 m-0">마지막 수정 시간: {{ article.updated_at }}</p>
   </div>
   <hr>
 
@@ -45,7 +49,12 @@
         <div class="col-11 d-flex">
           <!-- id는 어떻게 주지? -->
           {{ comment_form.content|add_class:'form-control' }}
-          <input type="submit" value="작성" class="btn btn-primary ms-3">
+
+          {% if request.user.is_authenticated %}
+            <input type="submit" value="작성" class="btn btn-primary ms-3">
+          {% else %}
+            <input type="submit" value="작성" class="btn btn-primary disabled ms-3">
+          {% endif %}
         </div>
       </div>
     </form>
@@ -58,13 +67,16 @@
         {% for comment in comments %}
           <tr style="vertical-align: middle">
             <td scope="row">{{ forloop.counter }}</td>
+            <td>{{ comment.user }}</td>
             <td>{{ comment.content }}</td>
             <td>{{ comment.updated_at|date:'Y-m-d' }}</td>
             <td>
-              <form action="{% url 'articles:delete_comment' article.pk comment.pk %}" method="POST" class="m-0">
-                {% csrf_token %}
-                <input type="submit" value="삭제" class='btn btn-outline-danger'>
-              </form>
+              {% if request.user == comment.user %}
+                <form action="{% url 'articles:delete_comment' article.pk comment.pk %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  <input type="submit" value="삭제" class='btn btn-outline-danger'>
+                </form>
+              {% endif %}
             </td>
           </tr>
         {% endfor %}
