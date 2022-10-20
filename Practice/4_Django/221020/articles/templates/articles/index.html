@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1 class="text-center mb-5">게시판</h1>
+
+  <div class="text-end mb-5 px-5">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'articles:create' %}" class="btn btn-primary w-auto">글 작성하기</a>
+    {% else %}
+      <a href="" class="btn btn-primary w-auto disabled">글 작성하기</a>
+    {% endif %}
+  </div>
+
+  <div class="container">
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for article in articles %}
+        <div class="col d-flex justify-content-center">
+          <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none">
+            <div class="card" style="width: 20rem;">
+              {% if article.thumbnail %}
+                <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.thumbnail }}">
+              {% else %}
+                <img src="{% static 'images/dummy-image-square.jpg' %}" class="card-img-top" alt="">
+              {% endif %}
+      
+              <div class="card-body text-dark">
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-text card-body-text">{{ article.content }}</p>
+              </div>
+
+              <div class="card-footer text-muted">
+                <p class="card-text">{{ article.user }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
