@@ -5,7 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-# from .models import Profile
+from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 # 회원가입
@@ -19,9 +20,10 @@ def signup(request):
 
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user)   #프로필 생성
             auth_login(request, user)
 
-            return redirect('articles:profile')
+            return redirect('accounts:profile', user.pk)
 
     else:
         form = CustomUserCreationForm()
@@ -74,17 +76,21 @@ def logout(request):
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
     articles = user.article_set.all()
+    comments = user.comment_set.all()
 
     context = {
         'user': user,
         'articles': articles,
+        'comments': comments,
     }
 
     return render(request, 'accounts/detail.html', context)
 
 
 # 프로필 작성 페이지
-def profile(request, user_pk):
+@login_required
+def profile(request):
+    # 업데이트
     if request.user.profile:
         profile = request.user.profile
 
@@ -94,11 +100,12 @@ def profile(request, user_pk):
             if profile_form.is_valid():
                 profile_form.save()
 
-                return redirect('accounts:detail', user_pk)
+                return redirect('accounts:detail', request.user.pk)
         
         else:
             profile_form = ProfileForm(instance=profile)
 
+    # 최초 생성
     else:
         if request.method == 'POST':
             profile_form = ProfileForm(request.POST, request.FILES)
@@ -106,7 +113,7 @@ def profile(request, user_pk):
             if profile_form.is_valid():
                 profile_form.save()
 
-                return redirect('accounts:detail', user_pk)
+                return redirect('accounts:detail', request.user.pk)
         
         else:
             profile_form = ProfileForm()

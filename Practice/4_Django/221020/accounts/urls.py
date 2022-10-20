@@ -10,5 +10,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('<int:user_pk>/', views.detail, name='detail'),
 
-    path('<int:user_pk>/profile', views.profile, name='profile'),   # 프로필 작성 페이지
+    path('profile/', views.profile, name='profile'),   # 프로필 작성 페이지
 ]

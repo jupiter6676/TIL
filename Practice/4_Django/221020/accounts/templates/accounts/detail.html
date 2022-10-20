@@ -8,30 +8,82 @@
     <a href="{% url 'articles:create' %}" class="btn btn-primary w-auto">글 작성하기</a>
   </div> {% endcomment %}
 
-  <div class="container">
-    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for article in articles %}
-        <div class="col d-flex justify-content-center">
-          <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none">
-            <div class="card" style="width: 20rem;">
-              {% if article.thumbnail %}
-                <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.thumbnail }}">
-              {% else %}
-                <img src="{% static 'images/dummy-image-square.jpg' %}" class="card-img-top" alt="">
-              {% endif %}
-      
-              <div class="card-body text-dark">
-                <h5 class="card-title">{{ article.title }}</h5>
-                <p class="card-text card-body-text">{{ article.content }}</p>
-              </div>
-
-              <div class="card-footer text-muted">
-                <p class="card-text">{{ article.user }}</p>
-              </div>
-            </div>
-          </a>
+  <!-- 프로필 이미지, 닉네임, 유저네임, 소개글 -->
+  <div class="container d-grid p-3 rounded-4 border border-1 mb-5">
+    <div class="row row-cols-2 align-items-center">
+      <div class="col-3">
+        {% if user.profile.image %}
+          <img src="{{ user.profile.image.url }}" alt="{{ user.profile.image }}" class="rounded-4 border border-1 w-100">
+        {% else %}
+          <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-4 border border-1 w-100">
+        {% endif %}
+      </div>
+  
+      <div class="col-9 p-3" style="height: 100%">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <h3 class="me-3">{{ user.profile.nickname }}</h3>
+            <h5 class="text-muted">{{ user.username }}</h5>
+          </div>
+          <div>
+            {% if request.user == user %}
+              <a href="{% url 'accounts:profile' %}" class="btn btn-outline-secondary">회원 정보 수정하기</a>
+            {% endif %}
+          </div>
         </div>
-      {% endfor %}
+        <hr>
+        <p class="m-0">{{ user.profile.intro }}</p>
+      </div>
     </div>
+  </div>
+
+  <!-- 글 목록 -->
+  <div class="px-3 mb-5">
+    <h5 class="fw-bold mb-3">글 목록</h5>
+    <table class="table">
+      <tbody>
+        {% for article in articles %}
+          <tr style="vertical-align: middle">
+            <td scope="row">{{ forloop.counter }}</td>
+            <td class="text-center">{{ article.user }}</td>
+            <td class="text-center">{{ article.content }}</td>
+            <td class="text-end">{{ article.updated_at|date:'Y-m-d' }}</td>
+            <td class="text-end">
+              {% if request.user == article.user %}
+                <form action="{% url 'articles:delete' article.pk %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  <input type="submit" value="삭제" class='btn btn-outline-danger'>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 댓글 목록 -->
+  <div class="px-3 mb-4">
+    <table class="table">
+      <h5 class="fw-bold mb-3">댓글 목록</h5>
+      <tbody>
+        {% for comment in comments %}
+          <tr style="vertical-align: middle">
+            <td scope="row">{{ forloop.counter }}</td>
+            <td class="text-center">{{ comment.user }}</td>
+            <td class="text-center">{{ comment.content }}</td>
+            <td class="text-end">{{ comment.updated_at|date:'Y-m-d' }}</td>
+            <td class="text-end">
+              {% if request.user == comment.user %}
+                <form action="{% url 'articles:delete_comment' comment.article.pk comment.pk %}" method="POST" class="m-0">
+                  {% csrf_token %}
+                  <input type="submit" value="삭제" class='btn btn-outline-danger'>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 {% endblock content %}

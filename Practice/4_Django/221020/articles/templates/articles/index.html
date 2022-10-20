@@ -17,7 +17,7 @@
       {% for article in articles %}
         <div class="col d-flex justify-content-center">
           <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none">
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="width: 18rem;">
               {% if article.thumbnail %}
                 <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.thumbnail }}">
               {% else %}
@@ -31,6 +31,7 @@
 
               <div class="card-footer text-muted">
                 <p class="card-text">{{ article.user }}</p>
+                <!-- <p class="card-text">{{ article.user.profile.nickname }}</p> -->
               </div>
             </div>
           </a>
