@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block content %}
+  <h1 class="text-center mb-5">게시판</h1>
+	<div class="text-end mb-4">
+		<a href="{% url 'articles:create' %}" class="btn btn-primary">글 작성하기</a>
+	</div>
+
+	<div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 g-xl-5 mb-5">
+		{% for article in question_list %}
+			<div class="col d-flex justify-content-center">
+				<a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none">
+					<div class="card" style="width: 18rem;">
+						{% if article.thumbnail %}
+							<img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.image }}">
+						{% else %}
+							<img src="{% static 'images/dummy-image-square.jpg' %}" class="card-img-top" alt="">
+						{% endif %}
+							
+						<div class="card-body text-dark">
+							<h5 class="card-title">{{ article.title }}</h5>
+							<p class="card-text card-body-text">{{ article.content }}</p>
+						</div>
+						
+						<div class="card-footer text-muted">
+							<p class="card-text">{{ article.user }}</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+
+  <ul class="pagination justify-content-center">
+    <!-- 이전 페이지 -->
+    {% if question_list.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?Search_option={{ search_options }}&#38;search={{ search }}&#38;page={{ question_list.previous_page_number }}">이전</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+      </li>
+    {% endif %}
+
+    <!-- 페이지 리스트 -->
+    {% for page_number in question_list.paginator.page_range %}
+      {% if page_number == question_list.number %}
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="?Search_option={{ search_options }}&#38;search={{ search }}&#38;page={{ page_number }}">{{ page_number }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?Search_option={{ search_options }}&#38;search={{ search }}&#38;page={{ page_number }}">{{ page_number }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    <!-- 다음페이지 -->
+    {% if question_list.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?Search_option={{ search_options }}&#38;search={{ search }}&#38;page={{ question_list.next_page_number }}">다음</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+      </li>
+    {% endif %}
+  </ul>
+{% endblock  %}
