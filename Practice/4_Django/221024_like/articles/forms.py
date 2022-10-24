@@ -5,7 +5,7 @@ class ArticleForm(forms.ModelForm):
     
     class Meta:
         model = Article
-        exclude = ('user',)
+        exclude = ('user', 'like_users')
         labels = {
             'title': '제목',
             'content': '내용',
@@ -13,6 +13,7 @@ class ArticleForm(forms.ModelForm):
             'grade': '평점',
             'image': '사진',
         }
+
 
 class CommentForm(forms.ModelForm):
 

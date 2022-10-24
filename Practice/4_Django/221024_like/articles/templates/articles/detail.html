@@ -32,15 +32,37 @@
   </div>
   <hr>
   
+  <!-- 좋아요 -->
+  <div class="d-flex justify-content-between align-items-center px-3 my-3">
+    {% if request.user.is_authenticated %}
+      <div>
+        {% if request.user in article.like_users.all %}
+        <a href="{% url 'articles:like' article.pk %}" class="bi bi-heart-fill text-decoration-none text-danger">
+          <span class="text-dark">좋아요 {{ article.like_users.count }}</span>
+        </a>
+        {% else %}
+        <a href="{% url 'articles:like' article.pk %}" class="bi bi-heart text-decoration-none text-dark">
+          <span>좋아요 {{ article.like_users.count }}</span>
+        </a>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="bi bi-heart text-decoration-none text-secondary">
+        <span>좋아요 {{ article.like_users.count }}</span>
+      </div>
+    {% endif %}
+
+    <div>
+      <a href="{% url 'articles:index' %}" class="btn btn-outline-primary">목록으로</a>
+    </div>
+  </div>
+
   <!-- 댓글 입력 -->
-  <div class="px-3 my-5">
+  <div class="px-3 my-4">
     <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
-      <div class="row">
+      <div class="row align-items-center">
         {% csrf_token %}
-        
-        <label for="{{ comment_form.content.label }}" class="col-1 col-form-label">
-          댓글 <span class="text-primary">{{ comments|length }}</span>
-        </label>
+        <div class="col-1">댓글 <span class="text-primary">{{ comments|length }}</span></div>
 
         <div class="col-11 d-flex">
           {{ comment_form.content|add_class:'form-control' }}

@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:article_pk>/comments/', views.create_comment, name='create_comment'),
     path('<int:article_pk>/comments/<int:comment_pk>/delete/', views.delete_comment, name='delete_comment'),
     path('search/', views.search, name='search'),
+    path('<int:article_pk>/likes/', views.like, name='like'),
 ]

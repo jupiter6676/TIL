@@ -165,3 +165,19 @@ def search(request):
     }
 
     return render(request, 'articles/search.html', context)
+
+
+# 좋아요
+@login_required
+def like(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    user = request.user
+
+    # 게시글에 좋아요한 유저 중, 로그인한 유저가 있으면
+    if article.like_users.filter(pk=user.pk).exists():
+        article.like_users.remove(user) # 해당 유저의 좋아요 취소
+
+    else:
+        article.like_users.add(user)
+
+    return redirect('articles:detail', article_pk)

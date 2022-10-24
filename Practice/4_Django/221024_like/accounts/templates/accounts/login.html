@@ -9,7 +9,8 @@
     {% bootstrap_form form %}
 
     <div class="text-end">
+      <a href="{% url 'accounts:signup' %}" class="btn btn-outline-primary">회원가입</a>
       <input type='submit' class='btn btn-primary' value='로그인'>
     </div>
-  </form> 
+  </form>
 {% endblock %}
