@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center px-3 mb-2">
+    <h1>{{ article.title }}</h1>
+
+    <div class="d-flex">
+      {% if request.user == article.user %}
+        <a href="{% url 'articles:update' article.pk %}" class="btn btn-primary me-2">수정</a>
+        <a href="{% url 'articles:delete' article.pk %}" class="btn btn-danger">삭제</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <a href="{% url 'accounts:detail' article.user.pk %}" class="text-muted text-decoration-none px-3">{{ article.user }}</a>
+    <p class="text-muted px-3 m-0">마지막 수정 시간: {{ article.updated_at|date:'Y-m-d, H:m' }}</p>
+  </div>
+  <hr>
+  
+  <div style="min-height: 300px" class="px-3">
+    {% if article.image %}
+      <div class="text-center mb-4" style="height: 30rem">
+        <img src="{{ article.image.url }}" alt="{{ article.image }}" class="h-100">
+      </div>
+    {% endif %}
+    
+    <!-- 줄바꿈 & 글 자르기 -->
+    <p class="text-break" style="white-space: pre-wrap;">{{ article.content }}</p>
+  </div>
+  <hr>
+  
+  <!-- 좋아요 -->
+  <div class="d-flex justify-content-between align-items-center px-3 my-3">
+    {% if request.user.is_authenticated %}
+      <div>
+        {% if request.user in article.like_users.all %}
+        <a href="{% url 'articles:like' article.pk %}" class="bi bi-heart-fill text-decoration-none text-danger">
+          <span class="text-dark">좋아요 {{ article.like_users.count }}</span>
+        </a>
+        {% else %}
+        <a href="{% url 'articles:like' article.pk %}" class="bi bi-heart text-decoration-none text-dark">
+          <span>좋아요 {{ article.like_users.count }}</span>
+        </a>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="bi bi-heart text-decoration-none text-secondary">
+        <span>좋아요 {{ article.like_users.count }}</span>
+      </div>
+    {% endif %}
+
+    <div>
+      <a href="{% url 'articles:index' %}" class="btn btn-outline-primary">목록으로</a>
+    </div>
+  </div>
+
+  <!-- 댓글 입력 -->
+  <div class="px-3 my-4">
+    <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
+      <div class="row align-items-center">
+        {% csrf_token %}
+        <div class="col-1">댓글 <span class="text-primary">{{ comments|length }}</span></div>
+
+        <div class="col-11 d-flex">
+          {{ comment_form.content|add_class:'form-control' }}
+
+          {% if request.user.is_authenticated %}
+            <input type="submit" value="작성" class="btn btn-primary ms-3">
+          {% else %}
+            <input type="submit" value="작성" class="btn btn-primary disabled ms-3">
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% for comment in comments %}
+    <div class="px-3">
+      <a href="{% url 'accounts:detail' comment.user.pk %}" class="text-muted m-0 text-decoration-none">
+        {{ comment.user }}
+      </a>
+      
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="m-0">{{ comment.content }}</p>
+
+        <div class="d-flex align-items-center">
+          <p class="m-0 me-3">{{ comment.created_at|date:'Y-m-d' }}</p>
+          
+          {% if comment.user == request.user %}
+            <form action="{% url 'articles:delete_comment' article.pk comment.pk %}" method="POST" class="m-0">
+              {% csrf_token %}
+              <input type="submit" value="삭제" class="btn btn-danger me-3">
+            </form>
+          {% endif %}
+        </div>
+      </div>
+      <hr>
+    </div>
+  {% endfor %}
+{% endblock %}
