@@ -5,8 +5,9 @@ from .models import Article, Comment
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 import os
+from django.http import JsonResponse
 
-# Create your views here.
+
 def index(request):
     articles = Article.objects.order_by('-pk')
 
@@ -99,7 +100,6 @@ def delete(request, pk):
 
     article.delete()
     
-
     # 회원 정보 페이지에서 삭제했으면
     if request.resolver_match.app_name == 'accounts':
         return redirect('accounts:detail', request.user.pk)
@@ -112,6 +112,7 @@ def delete(request, pk):
 # 댓글 생성
 @login_required
 def create_comment(request, article_pk):
+    print(request.POST)
     article = Article.objects.get(pk=article_pk)
 
     comment_form = CommentForm(request.POST)
@@ -121,8 +122,18 @@ def create_comment(request, article_pk):
         comment.user = request.user
         comment.article = article
         comment.save()
+
+        data = {
+            'userName': comment.user.username,
+            'content': comment.content,
+            'createdAt': comment.created_at,
+        }
+
+        return JsonResponse(data)
     
-    return redirect('articles:detail', article.pk)
+    else:
+        print('#####################################왜안됨?')
+        return redirect('articles:detail', article.pk)
 
 
 # 댓글 삭제

@@ -57,9 +57,9 @@
     </div>
   </div>
 
-  <!-- 댓글 입력 -->
+  <!-- 댓글 입력(비동기) -->
   <div class="px-3 my-4">
-    <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
+    <form id="comment-form" data-article-id="{{ article.pk }}">
       <div class="row align-items-center">
         {% csrf_token %}
         <div class="col-1">댓글 <span class="text-primary">{{ comments|length }}</span></div>
@@ -76,7 +76,7 @@
       </div>
     </form>
   </div>
-
+  
   {% for comment in comments %}
     <div class="px-3">
       <a href="{% url 'accounts:detail' comment.user.pk %}" class="text-muted m-0 text-decoration-none">
@@ -100,4 +100,36 @@
       <hr>
     </div>
   {% endfor %}
+
+  <!-- 비동기 댓글 추가 -->
+  <div id="comments" class="px-3">
+  </div>
 {% endblock %}
+
+{% block script %}
+  <script>
+    const commentForm = document.querySelector('#comment-form');
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    commentForm.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const articleId = event.target.dataset.articleId;
+
+      axios({
+        method: 'post',
+        url: `/articles/${articleId}/comments/`,
+        headers: {'X-CSRFToken': csrftoken},
+        data: new FormData(commentForm)
+      })
+      .then(response => {
+        const comments = document.querySelector('#comments');
+        const p = document.createElement('p');
+        p.innerText = `${response.data.userName} | ${response.data.content}`;
+        const hr = document.createElement('hr');
+        comments.append(p, hr) ;
+        commentForm.reset();
+      });
+    });
+  </script>
+{% endblock script %}
