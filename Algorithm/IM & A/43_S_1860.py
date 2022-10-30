@@ -16,6 +16,9 @@ for t in range(1, T + 1):
 
     bread = 0
     for sec in range(max_sec + 1):
+        if is_possible == False:
+            break
+        
         # M초가 지나면 K개의 붕어빵 굽기
         if sec > 0 and sec % M == 0:
             bread += K
