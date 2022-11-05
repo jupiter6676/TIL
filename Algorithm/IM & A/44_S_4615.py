@@ -14,51 +14,57 @@ for t in range(1, T + 1):
 
     for _ in range(M):
         x, y, stone = map(int, input().split())
-        board[y - 1][x - 1] = stone
-        visited = list()   # 이미 뒤집힌 돌은 뒤집지 않도록
+        x -= 1
+        y -= 1
+
+        board[y][x] = stone
 
         #
         dy = [-1, -1, -1, 0, 1, 1, 1, 0]
         dx = [-1, 0, 1, 1, 1, 0, -1, -1]
 
         for d in range(8):
-            ny = y - 1 + dy[d]
-            nx = x - 1 + dx[d]
+            ny = y + dy[d]
+            nx = x + dx[d]
 
-            if not (0 <= ny < N and 0 <= nx < N):
-                continue
+            visited = list()   # 이미 뒤집힌 돌은 뒤집지 않도록
+
+            # if not (0 <= ny < N and 0 <= nx < N):
+            #     continue
 
             # 자신의 색과 다른 돌을 만나면
-            if board[ny][nx] != 0 and board[ny][nx] != stone:
-            # if not (board[ny][nx] == 0 or board[ny][nx] == stone):
+            # if board[ny][nx] != 0 and board[ny][nx] != stone:
                 # 계속 그 방향으로 전진
-                while True:
+            while True:
+                if not (0 <= ny < N and 0 <= nx < N):
+                    visited = list()
+                    break
+
+                if board[ny][nx] == 0:
+                    visited = list()
+                    break
+
+                if board[ny][nx] == stone:
+                    for elem in visited:
+                        if stone == WHITE:
+                            board[elem[0]][elem[1]] = WHITE
+                        else:
+                            board[elem[0]][elem[1]] = BLACK
+
+                    break
+
+                else:
                     visited.append([ny, nx])
+
+                ny += dy[d]
+                nx += dx[d]
                     
-                    ny = ny + dy[d]
-                    nx = nx + dx[d]
+        # for row in board:
+        #     for elem in row:
+        #         print(elem, end=" ")
+        #     print()
+        # print("---------------------------")
 
-                    if not (0 <= ny < N and 0 <= nx < N):
-                        break
-
-                    if board[ny][nx] == stone:
-                        for elem in visited:
-                            if stone == WHITE:
-                                board[elem[0]][elem[1]] = WHITE
-                            else:
-                                board[elem[0]][elem[1]] = BLACK
-
-                        break
-
-                    if board[ny][nx] == 0:
-                        break
-                    
-        for row in board:
-            for elem in row:
-                print(elem, end=" ")
-            print()
-        print("---------------------------")
-        
     black_cnt = 0
     white_cnt = 0
 
@@ -69,7 +75,7 @@ for t in range(1, T + 1):
             elif elem == WHITE:
                 white_cnt += 1
 
-    #print(f'#{t} {black_cnt} {white_cnt}')
+    print(f'#{t} {black_cnt} {white_cnt}')
 
 
 
