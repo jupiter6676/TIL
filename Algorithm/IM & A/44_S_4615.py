@@ -19,7 +19,7 @@ for t in range(1, T + 1):
 
         board[y][x] = stone
 
-        #
+        # 델타 탐색
         dy = [-1, -1, -1, 0, 1, 1, 1, 0]
         dx = [-1, 0, 1, 1, 1, 0, -1, -1]
 
@@ -29,12 +29,7 @@ for t in range(1, T + 1):
 
             visited = list()   # 이미 뒤집힌 돌은 뒤집지 않도록
 
-            # if not (0 <= ny < N and 0 <= nx < N):
-            #     continue
-
-            # 자신의 색과 다른 돌을 만나면
-            # if board[ny][nx] != 0 and board[ny][nx] != stone:
-                # 계속 그 방향으로 전진
+            # 계속 한 방향으로 전진
             while True:
                 if not (0 <= ny < N and 0 <= nx < N):
                     visited = list()
@@ -46,11 +41,7 @@ for t in range(1, T + 1):
 
                 if board[ny][nx] == stone:
                     for elem in visited:
-                        if stone == WHITE:
-                            board[elem[0]][elem[1]] = WHITE
-                        else:
-                            board[elem[0]][elem[1]] = BLACK
-
+                        board[elem[0]][elem[1]] = stone
                     break
 
                 else:
@@ -76,8 +67,6 @@ for t in range(1, T + 1):
                 white_cnt += 1
 
     print(f'#{t} {black_cnt} {white_cnt}')
-
-
 
 
 '''
