@@ -8,6 +8,7 @@ def solution(start):
         solution(i)
         seq.pop()
 
+
 '''main'''
 N, M = map(int, input().split())
 seq = list()

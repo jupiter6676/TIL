@@ -14,6 +14,7 @@ def solution():
             solution()
             seq.pop()
 
+
 '''main'''
 N, M = map(int, input().split())
 seq = list()
