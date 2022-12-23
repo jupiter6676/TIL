@@ -35,7 +35,7 @@ S = [list(map(int, input().split())) for _ in range(N)]
 
 min_diff = 9999
 total = {i for i in range(N)}   # N명의 선수를 차례로 나열한 전체 집합
-tmp_seq = list()    # N명의 수열 → 반반씩 나누기
+tmp_seq = list()    # N // 2명의 수열
 
 recursion(0, 0)
 print(min_diff)
