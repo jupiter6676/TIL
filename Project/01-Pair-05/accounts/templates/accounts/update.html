@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class="text-center my-5">회원 정보 수정</h1>
+  <form action="{% url 'accounts:update' request.user.pk %}" method="POST">
+    {% bootstrap_form form %}
+    {% csrf_token %}
+
+    <div class="text-end">
+      <input type="submit" value="수정하기" class="btn btn-primary">
+    </div>
+  </form>
+{% endblock content %}

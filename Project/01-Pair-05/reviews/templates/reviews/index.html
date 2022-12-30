@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="text-center">게시글</h1>
+
+  <div class="">
+    <a class="btn btn-primary float-end" href="{% url 'reviews:create' %}">
+      글 작성</a>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+      {% for review in reviews %}
+
+      <div class="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-center">
+          <!-- <div class="card m-3" style="width: 18rem; min-width: 10rem;"> -->
+          <div class="card m-3" style="width: 30rem">
+            {% if review.thumbnail %}
+            <img src="{{ review.thumbnail.url }}" class="card-img-top " alt="dummy-img" height="240px">
+            {% else %}
+            <img src="https://dummyimage.com/600x400/000/fff" class="card-img-top " alt="dummy-img" height="240px">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title text-center"><a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a></h5>
+              {% comment %} <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> {% endcomment %}
+              <a href="{% url 'reviews:detail' review.pk %}" class="btn btn-primary">자세히 보기</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+{% endblock content %}

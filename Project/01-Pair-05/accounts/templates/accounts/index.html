@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center my-5">회원 목록</h1>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr onclick="goToDetail('{{ user.pk }}')">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
+
+{% block script %}
+<script>
+  function goToDetail(user_pk) {
+    location.href = "{% url 'accounts:detail' 0 %}".replace('0', user_pk);
+  }
+</script>
+{% endblock script %}

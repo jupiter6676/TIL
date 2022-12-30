@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center px-3 mb-2">
+    <h1>{{ review.title }}</h1>
+
+    <div class="d-flex">
+      {% if request.user == review.user %}
+        <a href="{% url 'reviews:update' review.pk %}" class="btn btn-primary me-2">수정</a>
+        <a href="{% url 'reviews:delete' review.pk %}" class="btn btn-danger">삭제</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <a href="{% url 'accounts:detail' review.user.pk %}" class="text-muted text-decoration-none px-3">{{ review.user }}</a>
+    <p class="text-muted px-3 m-0">마지막 수정 시간:
+      {{ review.updated_at|date:'Y-m-d, H:m' }}</p>
+  </div>
+  <hr>
+
+  <div style="min-height: 300px" class="px-3">
+    {% if review.image %}
+      <div class="text-center mb-4" style="height: 30rem">
+        <img src="{{ review.image.url }}" alt="{{ review.image }}" class="h-100">
+      </div>
+    {% endif %}
+
+    <p class="text-break" style="white-space: pre-wrap;">{{ review.content }}</p>
+  </div>
+  <hr>
+
+  {% if request.user in review.like_users.all %}
+    <i id="btn-like" data-review-id="{{ review.pk }}" class="bi bi-heart-fill " style=" color: red;"></i>
+
+  {%else%}
+
+    <i id="btn-like" data-review-id="{{ review.pk }}" class="bi bi-heart " style=" color: red;"></i>
+  {% endif %}
+  <span id="likeCount">{{ review.like_users.count }}</span>
+  
+  <div class="px-3 my-4">
+    <form id="comment-form" data-review-id="{{ review.pk }}">
+      <div class="row align-items-center">
+        {% csrf_token %}
+        <div class="col-1">댓글
+          <span class="text-primary" id="comment-count">{{ comments|length }}</span>
+        </div>
+
+        <div class="col-11 d-flex">
+          {{ comment_form.content|add_class:'form-control' }}
+          {% if request.user.is_authenticated %}
+            <input type="submit" value="작성" class="btn btn-primary ms-3">
+          {% else %}
+            <input type="submit" value="작성" class="btn btn-primary disabled ms-3">
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id='comments'>
+    <div class="px-3">
+      {% for comment in comments %}
+        <div id="comment-{{ comment.pk }}">
+          <a href="{% url 'accounts:detail' comment.user.pk %}" class="text-muted m-0 text-decoration-none">
+            {{ comment.user }}
+          </a>
+
+          <div class="d-flex align-items-center">
+            <p class="m-0 me-auto">{{ comment.content }}</p>
+            {% if comment.user == request.user %}
+              <form data-review-id="{{ review.pk }}" data-comment-id="{{ comment.pk }}" id="comment-delete" class="comment-delete-forms m-0">
+                {% csrf_token %}
+                <input type="submit" value="삭제" class="btn btn-danger">
+              </form>
+            {% endif %}
+          </div>
+          <hr>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    const btnLike = document.querySelector('#btn-like')
+    btnLike.addEventListener('click', event => {
+      axios({
+        method: 'get', 
+        url: `/reviews/${event.target.dataset.reviewId}/like/`
+      })
+      .then(response => {
+        if (response.data.isLiked === true) {
+          event.target.classList.add('bi-heart-fill')
+          event.target.classList.remove('bi-heart')
+        } else {
+          event.target.classList.add('bi-heart')
+          event.target.classList.remove('bi-heart-fill')
+        }
+        const likeCount = document.querySelector('#likeCount')
+        likeCount.innerText = response.data.likeCount
+      })
+    })
+
+    // 댓글
+    const commentform = document.querySelector('#comment-form')
+    const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+    commentform.addEventListener('submit', event => {
+        event.preventDefault()
+
+        const reviewId = event.target.dataset.reviewId
+
+        axios({
+          method: 'POST',
+          url: `/reviews/${reviewId}/comment/`,
+          headers: {'X-CSRFToken': csrf_token},
+          data: new FormData(commentform)
+        })
+        .then(response => {
+          const comments = document.querySelector('#comments')
+          const commentCount = document.querySelector('#comment-count')
+
+          commentCount.innerText = response.data.commentCount
+          comments.insertAdjacentHTML('beforeend',
+            `<div class="px-3">
+              <a class="text-muted m-0 text-decoration-none">
+                ${response.data.username}
+              </a>
+                <p class="m-0">${response.data.content}</p>
+                
+              <hr>
+            </div>`)
+
+            commentform.reset()
+          })
+      })
+
+    // 댓글 삭제12
+    const commentDeleteForms = document.querySelectorAll('.comment-delete-forms')
+    
+    // 모든 댓글 삭제 form에 이벤트 등록
+    commentDeleteForms.forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault()
+        const reviewId = event.target.dataset.reviewId
+        const commentId = event.target.dataset.commentId
+
+        axios({
+          method: 'post',
+          url: `/reviews/${reviewId}/comment/${commentId}/delete/`,
+          headers: {'X-CSRFToken': csrf_token},
+        })
+        .then(response => {
+          const comment = document.querySelector(`#comment-${commentId}`)
+          const is_deleted = response.data.is_deleted
+          const commentCount = document.querySelector('#comment-count')
+
+          commentCount.innerText = response.data.commentCount
+
+          if (is_deleted === true) {
+            comment.remove()
+          }
+        })
+      })
+    })
+  </script>
+{% endblock script %}
