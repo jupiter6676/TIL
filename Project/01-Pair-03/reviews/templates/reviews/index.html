@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+  <table class="table table-hover">
+    <h1 class="text-center mb-5">리뷰 목록</h1>
+
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">created_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in question_list %}
+        <tr onclick="goToDetail('{{ review.pk }}')">
+          <th scope="row">{{ review.pk }}</th>
+          <td>{{ review.title }}</td>
+          <td>{{ review.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-end">
+    <a href="{% url 'reviews:create' %}" class="btn btn-primary">글 작성하기</a>
+  </div>
+  <!-- 페이징처리 시작 -->
+  <ul class="pagination justify-content-center">
+    <!-- 이전페이지 -->
+    {% if question_list.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+      </li>
+    {% endif %}
+    <!-- 페이지리스트 -->
+    {% for page_number in question_list.paginator.page_range %}
+      {% if page_number == question_list.number %}
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    <!-- 다음페이지 -->
+    {% if question_list.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+      </li>
+    {% endif %}
+  </ul>
+  <!-- 페이징처리 끝 -->
+  <!-- JS -->
+  <script>
+    function goToDetail(review_pk) {
+      location.href = "{% url 'reviews:detail' pk=0 %}".replace('0', review_pk)
+    }
+  </script>
+{% endblock content %}

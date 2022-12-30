@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{ user_.pk }}</p>
+<p>username: {{ user_.username }}</p>
+<p>email: {{ user_.email }}</p>
+<p>full name: {{ user_.full_name }}</p>
+<hr>
+
+<form action="{% url 'accounts:update' user_.pk %}" method="GET">
+  <div class="text-end">
+    <a href="{% url 'accounts:index' %}" class="btn btn-outline-primary">목록으로</a>
+    {% if request.user.pk != user_.pk %}
+      <input type="submit" value="수정" class="btn btn-primary" disabled>
+    {% else %}
+      <input type="submit" value="수정" class="btn btn-primary">
+    {% endif %}
+  </div>
+</form>
+{% endblock content %}
