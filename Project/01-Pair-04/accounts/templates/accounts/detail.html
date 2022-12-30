@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block content %}
+  <h1 class="text-center my-5"><span class="text-primary">{{ user.username }}</span> 페이지</h1>
+
+  <!-- 프로필 이미지, 닉네임, 유저네임, 소개글 -->
+  <div class="container d-grid p-3 rounded-4 border border-1 mb-5">
+    <div class="row row-cols-2 align-items-center">
+      <div class="col-3">
+          <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-4 border border-1 w-100">
+      </div>
+  
+      <div class="col-9 p-3" style="height: 100%">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <h3 class="m-0 me-3">{{ user.username }}</h3>
+            <h5 class="text-muted">{{ user.last_name }}{{ user.first_name }}</h5>
+          </div>
+          <div>
+            {% if request.user == user %}
+              <a href="{% url 'accounts:update' user.pk %}" class="btn btn-primary">회원정보 수정</a>
+              <a href="{% url 'accounts:password' %}" class='btn btn-warning'>비밀번호 변경</a>
+              <a href="{% url 'accounts:delete' %}" class='btn btn-danger'>회원탈퇴</a>
+            {% endif %}
+          </div>
+        </div>
+        <hr>
+        <p>{{ user.email }}</p>
+        <p class="m-0">intro</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 작성 글 목록 -->
+  <div class="accordion mb-4" id="accordionReview">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReview" aria-expanded="true" aria-controls="collapseOne">
+          글 목록
+        </button>
+      </h2>
+      <div id="collapseReview" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionReview">
+        <div class="accordion-body">
+          {% for review in reviews %}
+            <a href="{% url 'articles:detail' review.pk %}" class="text-dark text-decoration-none">
+              <div class="px-3">
+                <p class="text-muted m-0 text-decoration-none me-3">{{ review.user }}</p>
+              
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="text-muted m-0 text-decoration-none me-3">{{ review.title }}</p>
+
+                  <div class="d-flex align-items-center">
+                    <p class="m-0 me-3">{{ review.created_at|date:'Y-m-d' }}</p>
+                    
+                    {% if review.user == request.user %}
+                    <form action="{% url 'articles:delete' review.pk %}" method="POST" class="m-0">
+                      {% csrf_token %}
+                      <input type="submit" value="삭제" class="btn btn-danger me-3">
+                    </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              <hr>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 작성 댓글 목록 -->
+  <div class="accordion" id="accordionComment">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="true" aria-controls="collapseOne">
+          댓글 목록
+        </button>
+      </h2>
+      <div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionComment">
+        <div class="accordion-body">
+          {% for comment in comments %}
+            <a href="{% url 'articles:detail' comment.review.pk %}" class="text-dark text-decoration-none">
+              <div class="px-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <p class="text-muted m-0 text-decoration-none me-3">{{ comment.user }}</p>
+                  <p class="text-muted m-0 text-decoration-none me-3">{{ comment.review.title }}</p>
+                </div>
+              
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="m-0">{{ comment.content }}</p>
+                  
+                  <div class="d-flex align-items-center">
+                    <p class="m-0 me-3">{{ comment.created_at|date:'Y-m-d' }}</p>
+                    
+                    {% if comment.user == request.user %}
+                    <form action="{% url 'articles:delete_comment' comment.review.pk comment.pk %}" method="POST" class="m-0">
+                      {% csrf_token %}
+                      <input type="submit" value="삭제" class="btn btn-danger me-3">
+                    </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              <hr>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}
