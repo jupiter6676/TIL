@@ -1,12 +1,19 @@
-## 프로젝트 주제
+## 프로젝트 소개
 
-주간 페어 프로그래밍 1 - 영화 리뷰 커뮤니티 CRUD 
+- 주간 페어 프로그래밍 1 - 영화 리뷰 커뮤니티 CRUD 
+
+- 프로젝트 기간
+  - 2022.09.30
+- 사용 기술
+  - 언어: HTML, CSS, JavaScript, Python
+  - 라이브러리: X
+  - 프레임워크: Django
 
 
 
-## 프로젝트 기간
+## 스크린샷
 
-2022.09.30
+![bandicam 2022-12-30 18-19-14-754](Assets/README.assets/bandicam 2022-12-30 18-19-14-754.gif)
 
 
 
@@ -77,25 +84,11 @@
 
 
 
-## 사용 기술
-
-- 언어: HTML, CSS, JavaScript, Python
-- 라이브러리: X
-- 프레임워크: Django
-
-
-
 ## 역할 (개발 내용)
 
 - 최보영: Create, Read
 - 임선주: Update, Delete
 - 공통: 페이지 디자인
-
-
-
-## 스크린샷
-
-![bandicam 2022-12-30 18-19-14-754](Assets/README.assets/bandicam 2022-12-30 18-19-14-754.gif)
 
 
 
