@@ -20,7 +20,7 @@ for i in range(0, len(positive) - 1, 2):
     # 한 수가 1일 때
     if positive[i] == 1 or positive[i + 1] == 1:
         total += positive[i] + positive[i + 1]
-    # 두 수가 모두 1 이상일 때
+    # 두 수가 모두 2 이상일 때
     else:
         total += positive[i] * positive[i + 1]
 
