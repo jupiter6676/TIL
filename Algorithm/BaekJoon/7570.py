@@ -7,6 +7,6 @@ for i in range(N):
     n = nums[i]
 
     dp[n] = dp[n - 1] + 1   # d = 1인 가장 긴 등차수열 찾기
-    max_asc = max(max_asc, dp[n], dp[n - 1] + 1)
+    max_asc = max(max_asc, dp[n])
 
 print(N - max_asc)
