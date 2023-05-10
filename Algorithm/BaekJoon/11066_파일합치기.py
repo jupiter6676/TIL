@@ -14,23 +14,22 @@ for _ in range(int(input())):
     dp = [[0] * (N + 1) for _ in range(N + 1)]
     sum_ = [0] * (N + 1)
 
-    for i in range(1, N + 1):
-        sum_[i] = sum_[i - 1] + files[i]
-
-    
-    # for i in range(N):
-    #     dp[i][i] = files[i]
+    for d in range(1, N + 1):
+        sum_[d] = sum_[d - 1] + files[d]
 
     # for i in range(1, N + 1):
+    #     # dp[i][i] = files[i]
+
     #     for j in range(i + 1, N + 1):
     #         dp[i][j] = 10001
             
     #         for k in range(i, j):
+    #             tmp = dp[i][k] + dp[k + 1][j] + sum_[j] - sum_[i - 1]
     #             dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + sum_[j] - sum_[i - 1])
 
-    for i in range(1, N + 1):
-        for x in range(1, N - i + 1):
-            y = x + i
+    for d in range(1, N + 1):   # y - x 즉, 숫자의 range
+        for x in range(1, N - d + 1):
+            y = x + d
             dp[x][y] = 9999999
 
             for mid in range(x, y):
@@ -50,3 +49,4 @@ for _ in range(int(input())):
 # dp[0][2] + dp[3][3]
 
 # 뭔 차이지??
+# 내가 했었던 건 숫자의 차를 고려하지 않았음..
