@@ -7,7 +7,6 @@ def pprint(mat):
         for elem in row:
             print(elem, end=' ')
         print()
-    print('\n')
 
 N, M = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(N)]
