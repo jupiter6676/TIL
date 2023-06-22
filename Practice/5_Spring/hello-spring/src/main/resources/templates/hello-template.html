@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello Template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+    <!--  thymeleaf의 th  -->
+    <!--  HelloController의 model에서 만든 Attribute name-name  -->
+    <p th:text="'hello ' + ${name}">hello empty</p>
+</body>
+</html>
