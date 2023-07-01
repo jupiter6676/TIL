@@ -33,23 +33,4 @@ for i in range(len(words)):
         else:
             tmp += words[i]
 
-# for i in range(len(words)):
-#     if words[i] == '<':
-#         print(tmp[::-1], end='')
-#         is_tag = True
-#         tmp = ''
-
-#     if is_tag and words[i] == '>':
-#         print(tmp + '>', end='')
-#         tmp = ''
-#         is_tag = False
-
-#     elif words[i] != ' ':
-#         tmp += words[i]
-        
-#     else:
-#         print(tmp[::-1], end='')
-#         tmp = ''
-        
-
 print(tmp[::-1])
