@@ -101,18 +101,18 @@
 
 ### (2) 주요 장비
 
-- **허브** (Hub), **리피터** (Repeater)
+- **허브**(Hub), **리피터**(Repeater)
   - 신호를 멀리 보내기 위한 증폭 장치
   - 허브는 리피터와 다르게 여러 장비를 연결할 수 있음
-- **케이블** (Cable)
+- **케이블**(Cable)
   - 데이터를 전송하기 위한 물리적 장치
   - 이더넷, 광섬유 등
-- **트랜시버** (Tranceiver)
+- **트랜시버**(Tranceiver)
   - 컴퓨터의 랜 카드와 케이블을 연결하는 장비
   - 송신기와 수신기를 포함
     - 데이터를 전기 신호로 변환하여 케이블에 송출
     - 수신된 전기 신호를 데이터로 변환
-- **탭** (TAP)
+- **탭**(TAP)
   - 네트워크 모니터링 & 패킷 분석을 위해 전기 신호를 다른 장비로 복제하는 장비
 
 
@@ -138,7 +138,7 @@
   - 출발지와 도착지의 MAC 주소를 확인하고, 정확히 보내졌는지 검사한 뒤 데이터를 처리
   - ✨ **MAC 주소**
     - 2 계층의 **물리적 주소** 체계로, MAC 주소를 통해 통신해야 할 포트를 지정하여 내보낼 수 있음
-    - 네트워크 인터페이스 카드에는 고유 MAC 주소가 존재
+    - **네트워크 인터페이스 카드**에는 고유 MAC 주소가 존재
       - MAC 주소를 이용해 전기 신호가 자신에게 오는 게 맞는지 확인
       - 맞을 경우 상위 계층에서 처리할 수 있도록 메모리에 적재
 
@@ -147,20 +147,27 @@
 
 
 
-- **Framing** (단위화)
+- **Addressing**(주소 부여)
+
+  - 고유한 주소 및 논리적 주소를 부여
+
+- **Framing**(단위화)
   - NIC는 전기 신호(Bit)를 ✨**프레임**(Frame) 단위로 묶어서 분리
   - 프레임
     - 네트워크 통신에서 데이터를 전송하는 단위
-    - 프레임 구분을 위한 길이를 나누는 방법은 Character Oriented (바이트 단위)와 Bit Oriented (비트 단위) 방법이 있음
+    - 프레임 구분을 위한 길이를 나누는 방법은 Character Oriented(바이트 단위)와 Bit Oriented(비트 단위) 방법이 있음
     - 프레임은 Header, Data, Trailer의 요소로 구성되어 있음
       - **Header**: 출발지와 도착지의 MAC 주소가 포함되며, 프레임이 올바른 목적지로 전달되도록 함
       - **Data**: 실제 전송되는 데이터
       - **Trailer**: 오류 검출을 위한 CRC(Cyclic Redundancy Check)와 같은 오류 검출 코드를 포함하여, 데이터 전송 중 발생한 오류를 수신 측이 감지할 수 있음
-- **Flow Control** (흐름 제어)
+- **Flow Control**(흐름 제어)
   - 송신자와 수신자의 처리 속도 차이를 해결하기 위한 제어
   - 수신자가 송신자에게 피드백을 주어, 데이터 전송 속도를 조절
   - 빠른 송신자가 느린 수신자를 압도하지 못하도록 함
-- **Error Control** (에러 제어)
+  - 종류
+    - Stop and Wait: 수신측이 ACK를 수신한 경우에만 다음 프레임을 전송
+    - Sliding Windows: 위의 방식에서 번호를 붙인 프레임을 연속으로 보냄으로써, Utilization을 높임
+- **Error Control**(에러 제어)
   - 데이터에 대한 에러 탐지 및 수정을 담당
     - 송신자는 데이터를 Framing한 후, 이를 0과 1로 이루어진 비트로 변환하여 전송
     - 전기 신호는 외부 영향에 취약하여, 위 과정에서 물리적 손실 또는 변형이 일어날 수 있음
@@ -168,17 +175,44 @@
   - Data Link 계층 외 **end-to-end에서도 별도의 에러 처리**를 진행함
     - out-of-order delivery 현상을 해결하기 위해서 수행
     - out-of-order delivery는 데이터가 전송된 순서와는 다른 순서로 도착하는 현상
-  - Detection (검출)
+  - Detection(검출)
     - Parity Check, CRC, Checksum, Hamming Code 등
-  - Correction (수정)
+  - Correction(수정)
     - FEC, BEC 등
     - 이더넷 기반의 2 계층에서는 에러 탐지 역할만 수행
       - 손상된 Frame은 버림
+- **Automatic Repeat Request**(ARQ, 재전송)
+
+  - Stop and Wait: 일정 시간 내 ACK이 오지 않는 경우 재전송
+  - Go Back N: Sliding Window 기반
+
+    - 수신측: 에러가 있는 프레임이 정상적으로 수신될 때까지 모든 프레임을 저장하지 않음
+    - 송신측: 에러가 있는 프레임부터 모든 프레임을 재전송함
+
+  - Selective Repeat: 재대로 온 프레임은 수신측이 버퍼링 수행
 
 
 
-- ✅✅✅✅✅✅ **여기서부터!!!** 대표적 프로토콜은 Ethernet, HDLC, PPP 등
+
+- 대표적 프로토콜
+  - 회선 제어, 흐름 제어, 오류 제어 등을 위한 규칙
+  - HDLC, LLC/MAC(Ethernet), PPP 등
+  - 분류
+    - 비동기식 프로토콜: 거의 사용되지 않음
+    - 동기식 프로토콜
+      - 문자(바이트) 위주 프로토콜
+        - 프레임을 Byte로 구성되는 문자들의 연속된 열로 간주함
+        - 문자 단위로 전송
+        - 비효율적이며 ARQ를 지원하지 않기에 거의 사용되지 않음
+  
+      - **비트 위주 프로토콜**
+        - 프레임을 비트열로 간주함
+        - 국제 표준화된 HDLC와, 그로부터 파생된 LAPB, LAPD, LAPM 프로토콜이 대표적임
+        - HDLC로부터 발전된 프로토콜에는 PPP가 있음
+  
+  - ✅✅✅✅✅✅ HDLC 프로토콜
   - 📌 ARP
+  
 
 
 
@@ -221,8 +255,8 @@
 
 - [Chapter 11. Data-Link Layer](https://velog.io/@wilko97/Chapter-11.-Data-Link-Layer)
 - [데이터 링크 계층(Data Link Layer) - Error Control](https://east-star.tistory.com/26)
-
-
+- [데이터링크 프로토콜](https://velog.io/@chlvlftn22/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A7%81%ED%81%AC-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
+- [[데이터통신] 9. Data Link Control Protocols](https://velog.io/@bsu1209/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%86%B5%EC%8B%A0-Data-Link-Control-Protocols)
 
 
 
