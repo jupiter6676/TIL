@@ -54,8 +54,10 @@
 
 
 
+> OSI 7 Layer
 
-![image-20240214230859003](Assets/01_OSI_7_Layer.assets/image-20240214230859003.png)
+
+![image-20240205230859000](Assets/01_OSI_7_Layer.assets/image-20240205230859000.png)
 
 
 
@@ -68,7 +70,7 @@
 
 > OSI 7 계층과 TCP/IP 프로토콜
 
-![image-20240205230859000](Assets/01_OSI_7_Layer.assets/image-20240205230859000.png)
+![image-20240205230859001](Assets/01_OSI_7_Layer.assets/image-20240205230859001.png)
 
 - OSI 7 계층은 Data Flow 하위 계층과 Application 상위 계층으로 묶어서 구분
   - 이는 데이터 전달에 집중하는 영역과 애플리케이션에 집중하는 영역으로 구분한 것
@@ -78,7 +80,7 @@
 
 # 3. OSI 계층별 이해
 
-## 3-1. 1 Layer - Physical
+## 3.1. Physical 계층 (1 계층)
 
 <div style="border-radius: 3px; margin: 0.75rem 0 0; padding: 0.5rem; display: flex; position: relative; align-items: normal; word-break: break-word; background-color: #e9f7ff";>
     <div style="height: 24px; width: 24px; box-sizing: content-box; padding-right: 8px; text-align: center; margin-top: 0.1rem;">
@@ -88,7 +90,7 @@
         <p style="margin: 0;">물리적 연결과 관련된 정보를 정의하는 계층</p>
     </div>
 </div>
-### (1) 역할
+### 3.1.1. 역할
 
 
 - 주로 **전기 신호를 송수신**하는 데에 초점
@@ -99,7 +101,7 @@
 
 
 
-### (2) 주요 장비
+### 3.1.2. 주요 장비
 
 - **허브**(Hub), **리피터**(Repeater)
   - 신호를 멀리 보내기 위한 증폭 장치
@@ -117,12 +119,12 @@
 
 
 
-### (3) 참고
+### 3.1.3. 참고
 
 
 
 
-## 3-2. 2 Layer - Data Link
+## 3.2. Data Link 계층 (2 계층)
 
 <div style="border-radius: 3px; margin: 0.75rem 0 0; padding: 0.5rem; display: flex; position: relative; align-items: normal; word-break: break-word; background-color: #e9f7ff";>
     <div style="height: 24px; width: 24px; box-sizing: content-box; padding-right: 8px; text-align: center; margin-top: 0.1rem;">
@@ -132,7 +134,7 @@
         <p style="margin: 0;">물리적 장비를 통해 전송되는 데이터의 오류를 검출 및 수정하여, 신뢰성 있는 데이터 전송을 보장하는 계층</p>
     </div>
 </div>
-### (1) 역할
+### 3.2.1. 역할
 
 - **주소 정보**를 정의하고 **정확한 주소로 통신**하는 데에 초점
   - 출발지와 도착지의 MAC 주소를 확인하고, 정확히 보내졌는지 검사한 뒤 데이터를 처리
@@ -146,10 +148,15 @@
 
 
 
+### 3.2.2. 기능
+
 
 - **Addressing**(주소 부여)
 
   - 고유한 주소 및 논리적 주소를 부여
+
+
+
 
 - **Framing**(단위화)
   - NIC는 전기 신호(Bit)를 ✨**프레임**(Frame) 단위로 묶어서 분리
@@ -160,6 +167,10 @@
       - **Header**: 출발지와 도착지의 MAC 주소가 포함되며, 프레임이 올바른 목적지로 전달되도록 함
       - **Data**: 실제 전송되는 데이터
       - **Trailer**: 오류 검출을 위한 CRC(Cyclic Redundancy Check)와 같은 오류 검출 코드를 포함하여, 데이터 전송 중 발생한 오류를 수신 측이 감지할 수 있음
+
+
+
+
 - **Flow Control**(흐름 제어)
   - 송신자와 수신자의 처리 속도 차이를 해결하기 위한 제어
   - 수신자가 송신자에게 피드백을 주어, 데이터 전송 속도를 조절
@@ -167,6 +178,10 @@
   - 종류
     - Stop and Wait: 수신측이 ACK를 수신한 경우에만 다음 프레임을 전송
     - Sliding Windows: 위의 방식에서 번호를 붙인 프레임을 연속으로 보냄으로써, Utilization을 높임
+
+
+
+
 - **Error Control**(에러 제어)
   - 데이터에 대한 에러 탐지 및 수정을 담당
     - 송신자는 데이터를 Framing한 후, 이를 0과 1로 이루어진 비트로 변환하여 전송
@@ -181,38 +196,19 @@
     - FEC, BEC 등
     - 이더넷 기반의 2 계층에서는 에러 탐지 역할만 수행
       - 손상된 Frame은 버림
+
+
+
+
 - **Automatic Repeat Request**(ARQ, 재전송)
 
   - Stop and Wait: 일정 시간 내 ACK이 오지 않는 경우 재전송
-  - Go Back N: Sliding Window 기반
+  - Go Back N: Sliding Windows 기반
 
     - 수신측: 에러가 있는 프레임이 정상적으로 수신될 때까지 모든 프레임을 저장하지 않음
     - 송신측: 에러가 있는 프레임부터 모든 프레임을 재전송함
 
   - Selective Repeat: 재대로 온 프레임은 수신측이 버퍼링 수행
-
-
-
-
-- 대표적 프로토콜
-  - 회선 제어, 흐름 제어, 오류 제어 등을 위한 규칙
-  - HDLC, LLC/MAC(Ethernet), PPP 등
-  - 분류
-    - 비동기식 프로토콜: 거의 사용되지 않음
-    - 동기식 프로토콜
-      - 문자(바이트) 위주 프로토콜
-        - 프레임을 Byte로 구성되는 문자들의 연속된 열로 간주함
-        - 문자 단위로 전송
-        - 비효율적이며 ARQ를 지원하지 않기에 거의 사용되지 않음
-  
-      - **비트 위주 프로토콜**
-        - 프레임을 비트열로 간주함
-        - 국제 표준화된 HDLC와, 그로부터 파생된 LAPB, LAPD, LAPM 프로토콜이 대표적임
-        - HDLC로부터 발전된 프로토콜에는 PPP가 있음
-  
-  - ✅✅✅✅✅✅ HDLC 프로토콜
-  - 📌 ARP
-  
 
 
 
@@ -229,9 +225,104 @@
 
 
 
-### (2) 주요 장비
+### 3.2.3. 프로토콜
 
-- **네트워크 인터페이스 카드 (NIC)**
+
+- 대표적 프로토콜
+  - 회선 제어, 흐름 제어, 오류 제어 등을 위한 규칙
+  - HDLC, LLC/MAC(Ethernet), PPP 등
+  - 분류
+    - 비동기식 프로토콜: 거의 사용되지 않음
+    - 동기식 프로토콜
+      - 문자(바이트) 위주 프로토콜
+        - 프레임을 Byte로 구성되는 문자들의 연속된 열로 간주함
+        - 문자 단위로 전송
+        - 비효율적이며 ARQ를 지원하지 않기에 거의 사용되지 않음
+
+      - **비트 위주 프로토콜**
+        - 프레임을 비트열로 간주함
+        - 국제 표준화된 HDLC와, 그로부터 파생된 LAPB, LAPD, LAPM 프로토콜이 대표적임
+        - HDLC로부터 발전된 프로토콜에는 PPP가 있음
+
+
+
+
+
+- **HDLC 프로토콜**
+
+  - 컴퓨터가 일대일 혹은 일대다로 연결된 환경에서의 데이터 송수신 기능을 제공
+
+  - 용어
+
+    - 호스트(Host): 데이터 통신을 위해 연결된 각각의 컴퓨터
+    - 주국(Primary Station): 명령을 전송하는 호스트
+    - 종국(Secondary Station): 명령에 응답하는 호스트
+    - 혼합국(Combined Station): 주국과 종국의 기능을 모두 가지는 호스트
+    - 명령(Command): 주국에서 전송되는 메시지
+    - 응답(Response): 종국으로부터 회신되는 메시지
+
+  - 프레임 구조
+
+    ![image-20240208230859003](Assets/01_OSI_7_Layer.assets/image-20240208230859003.png)
+
+    - **01111110**: 프레임의 시작과 끝을 구분하는 용도로 사용됨
+    - **Address**: 일대다 환경에서 호스트를 구분할 때 사용됨
+      - 주국은 Address에 종국의 주소를 저장
+      - 종국은 Address에 자신의 주소를 저장
+    - **Control**: 프레임의 종류를 구분하는 용도로 사용됨
+      - 정보 프레임: 네트워크 계층의 데이터 전송을 담당
+      - 감독 프레임: 정보 프레임에 대한 응답
+      - 비번호 프레임
+    - **Data**: 크기가 가변적이며, 네트워크 계층의 패킷이 캡슐화된 것
+    - **Checksum**: CRC 오류 검출 용도로 사용됨
+
+  - 프레임 종류
+
+    - Control에 따라 달라짐
+    - 정보 프레임(Information Frame): 네트워크 계층의 데이터 전송을 수행
+      - Seq
+        - Sliding Windows 프로토콜 사용
+        - 송신용 순서 번호(3bit)로 사용 → 0~7의 번호만 사용 가능
+      - Next
+        - Piggybacking을 이용하여 응답
+          - Piggybacking: 호스트 간 데이터 송수신 시 정보 프레임 안에 응답도 함께 전송
+        - 수신측은 데이터를 받고, 송신측은 상대가 잘 받았음을 확인할 수 있음
+          - 잘 받았다는 증거로, Next 안에 다음으로 전송받아야 할 프레임 순서 번호가 담겨 있음
+          - 그러면 송신측은 해당 응답을 받은 후 다음 프레임을 전송
+        - Next에도 순서 번호가 있으므로 3bit를 할당받음
+      - P/F
+        - 주국이 다수의 종국을 제어하기 위해 사용
+        - 값이 1인 경우에 의미가 있음
+          - 주국 → 종국: 데이터를 전송할 컴퓨터가 있는지 조사 (Poll)
+          - 종국 → 주국: 주국으로부터 전송 허가를 받았음을 알림 (Final)
+    - 감독 프레임(Supervisor Frame): 정보 프레임에 대한 응답 기능을 수행
+      - Type의 2bit 값에 따라 유형이 다름
+        - 00(RR, Receive Ready): 긍정 응답으로, 다음 프레임을 받을 준비가 되었음을 알림
+        - 01(REJ, Reject): 부정 응답으로, Next 필드에 재전송되어야 하는 프레임의 번호를 저장한 후 응답
+        - 10(RNR, Receive Not Ready): Next 필드의 앞 번호 프레임까지 제대로 받았으나, 더이상 프레임을 수신하지 않겠다는 의미
+        - 11(SREJ, Selective Reject): 선택적 재전송 방식에서의 부정 응답으로 사용되며, Next에 재전송되어야 할 프레임 번호가 저장됨
+    - 비번호 프레임(Unnumbered Frame): 순서 번호가 없는 프레임을 정의하며, 주로 연결 제어 시에 사용
+      - 연결에는 3가지 종류가 있음
+        - 정규 응답(Normal Response)
+          - 주국과 종국으로 이루어짐
+          - 종국은 반드시 주국의 허락을 받아야만 데이터 전송이 가능
+        - 비동기 균형(Asynchronous Balanced)
+          - 주국과 종국이 아닌, 두 개의 호스트가 동일한 힘을 가진 혼합국으로 이루어짐
+          - LAPB 프로토콜이 이에 해당
+        - 비동기 응답(Asynchronous Response)
+          - 주국과 종국으로 이루어짐
+          - 종국은 주국의 허락이 없어도 데이터 전송이 가능
+          - LAP 프로토콜이 이에 해당
+
+    
+
+  - 📌 ARP
+
+
+
+### 3.2.4. 주요 장비
+
+- **네트워크 인터페이스 카드(NIC)**
   - PC나 서버에 네트워크를 연결해 주는 카드나 인터페이스
   - 랜 카드, 물리 네트워크 인터페이스, 이더넷 카드, 네트워크 어뎁터 등의 별칭이 존재
   - 동작 방식
@@ -251,16 +342,18 @@
 
 
 
-### (3) 참고
+### 3.2.5. 참고
 
 - [Chapter 11. Data-Link Layer](https://velog.io/@wilko97/Chapter-11.-Data-Link-Layer)
 - [데이터 링크 계층(Data Link Layer) - Error Control](https://east-star.tistory.com/26)
 - [데이터링크 프로토콜](https://velog.io/@chlvlftn22/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A7%81%ED%81%AC-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
 - [[데이터통신] 9. Data Link Control Protocols](https://velog.io/@bsu1209/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%86%B5%EC%8B%A0-Data-Link-Control-Protocols)
+- [HDLC 프로토콜( High-Level Data Link Control )](https://lordofkangs.tistory.com/61)
+- [https://ddingz.tistory.com/158](https://ddingz.tistory.com/158)
 
 
 
-## 3-3. 3 Layer - Network
+## 3.3. Network 계층 (3 계층)
 
 <div style="border-radius: 3px; margin: 0.75rem 0 0; padding: 0.5rem; display: flex; position: relative; align-items: normal; word-break: break-word; background-color: #e9f7ff";>
     <div style="height: 24px; width: 24px; box-sizing: content-box; padding-right: 8px; text-align: center; margin-top: 0.1rem;">
