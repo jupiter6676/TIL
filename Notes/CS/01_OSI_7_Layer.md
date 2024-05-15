@@ -41,16 +41,12 @@
   - 애플리케이션 개발자는 상위 계층만을 고려
   - 데이터를 표현하는 데에 초점을 맞춤
   - Top-down
-
 - 하위 계층
-
   - 1 ~ 4 계층
-
   - 네트워크 엔지니어는 하위 계층만을 고려
-
   - 데이터를 상대방에게 잘 전달하는 역할
-
   - Bottom-up
+
 
 
 
@@ -314,28 +310,59 @@
           - 종국은 주국의 허락이 없어도 데이터 전송이 가능
           - LAP 프로토콜이 이에 해당
 
-    
-
-  - 📌 ARP
 
 
 
 ### 3.2.4. 주요 장비
 
 - **네트워크 인터페이스 카드(NIC)**
-  - PC나 서버에 네트워크를 연결해 주는 카드나 인터페이스
-  - 랜 카드, 물리 네트워크 인터페이스, 이더넷 카드, 네트워크 어뎁터 등의 별칭이 존재
+  - PC나 서버 등의 컴퓨터를 네트워크에 연결해 주는 장치
+  
+  - 서로 다른 형태의 데이터를 전송하는 컴퓨터와 네트워크 간 상호작용이 가능하도록 하는 장치
+  
+  - NIC는 고유한 MAC 주소를 가짐
+  
+  - 랜 카드, 물리 네트워크 인터페이스, 이더넷 카드, 네트워크 어댑터 등의 별칭이 존재
+  
   - 동작 방식
-    - 전기 신호를 데이터 형태로 변환
-    - 목적지와 출발지의 MAC 주소 확인
-    - 네트워크 인터페이스 카드의 MAC 주소 확인
-    - 두 MAC 주소가 맞으면 데이터를 처리하고, 아니면 데이터를 폐기
-- **스위치**
+  
+    - 컴퓨터 연결: NIC는 컴퓨터에 물리적으로 연결됨
+  
+    - **데이터 변환**: 데이터를 패킷으로 변환하여 네트워크를 통해 전송하기 적합한 물리적 신호로 변환
+  
+      ![image-20240208230859004](Assets/01_OSI_7_Layer.assets/image-20240208230859004.png)
+  
+      - 유선 NIC: 데이터를 전기 신호로 변환
+      - 무선 NIC: 데이터를 전파로 변환
+  
+    - **데이터 송신**: 데이터 패킷을 적절한 매체를 통해 네트워크로 전송
+  
+      - 유선 NIC: 이더넷 케이블을 통해 전송
+      - 무선 NIC: Wi-Fi를 통해 전송
+  
+    - **데이터 수신**: NIC가 데이터 패킷을 수신하여 디코딩하고 처리
+  
+      - 목적지와 출발지의 MAC 주소 확인
+      - 네트워크 인터페이스 카드의 MAC 주소 확인
+      - 받은 패킷의 목적지 주소와 자신의 MAC 주소가 맞으면 데이터를 처리하고, 아니면 데이터를 폐기
+  
+    - **데이터 처리**: 오류 검사, 패킷 재조립, 버퍼링 작업 및 네트워크 프로토콜과 설정을 관리
+
+
+
+- **스위치(Switch)**
+
+  ![image-20240208230859005](Assets/01_OSI_7_Layer.assets/image-20240208230859005.png)
+
   - 네트워크 중간에서 패킷을 받아, 필요한 곳에만 보내주는 중재자 역할
   - 단말의 MAC 주소와 단말의 포트 주소를 매핑한 📌 **MAC 주소 테이블**을 가짐
     - MAC 주소, 📌 VLAN, 포트 정보를 매핑하여 저장
     - 📌 Broadcasting Domain/Traffic
     - 📌 Frame Flooding
+  - https://velog.io/@indongcha/IT-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%85%EB%AC%B8-4%EC%9E%A5-%EC%8A%A4%EC%9C%84%EC%B9%98-2%EA%B3%84%EC%B8%B5-%EC%9E%A5%EB%B9%84
+
+
+
 - **브리지**
   - 네트워크 세그먼트(큰 네트워크를 구성하는 작은 네트워크 집합)를 서로 연결하는 장치
   - 📌 세그먼트 (Broadcast domain - 라우터가 구성하는 범위..? 같은 느낌)
@@ -349,7 +376,9 @@
 - [데이터링크 프로토콜](https://velog.io/@chlvlftn22/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A7%81%ED%81%AC-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
 - [[데이터통신] 9. Data Link Control Protocols](https://velog.io/@bsu1209/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%86%B5%EC%8B%A0-Data-Link-Control-Protocols)
 - [HDLC 프로토콜( High-Level Data Link Control )](https://lordofkangs.tistory.com/61)
-- [https://ddingz.tistory.com/158](https://ddingz.tistory.com/158)
+- [HDLC 프로토콜](https://ddingz.tistory.com/158)
+- [NIC (Network Interface Card)에 대하여](https://alluknow.tistory.com/73)
+- [쉽게 이해하는 네트워크 10. TCP/IP 네트워크 인터페이스 계층의 역할과 데이터 전송 (ft. 랜카드와 MAC 주소)](https://better-together.tistory.com/101)
 
 
 
