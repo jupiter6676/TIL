@@ -355,11 +355,44 @@
   ![image-20240208230859005](Assets/01_OSI_7_Layer.assets/image-20240208230859005.png)
 
   - 네트워크 중간에서 패킷을 받아, 필요한 곳에만 보내주는 중재자 역할
-  - 단말의 MAC 주소와 단말의 포트 주소를 매핑한 📌 **MAC 주소 테이블**을 가짐
+  
+  - 단말의 MAC 주소와 단말의 포트 주소를 매핑한 **MAC 주소 테이블**을 가짐
+  
+  - **Forwarding/Filtering**
+  
+    - Forwarding: 패킷의 헤더 안에서 목적지 MAC 주소를 확인하여, 해당 MAC 주소와 매핑된 포트로만 패킷을 전달하는 것
+    - Filtering: 이때 다른 포트로는 해당 패킷을 전달하지 않음
+    - Unicast에 대해서만 포워딩/필터링 작업을 수행하며, 플러딩하는 경우는 거의 없음
+    - BUM 트래픽(Broadcast, Unknown Unicast, Multicast)에 대해서는 플러딩을 수행함
+    - ARP Broadcast를 통해 MAC 주소를 습득하는 과정에서, 이미 스위치는 ARP 프로토콜을 주고받은 단말의 MAC 주소와 포트 주소를 학습함
+  
+  - **Flooding**
+  
+    - MAC 주소 테이블에 없는 목적지 MAC 주소를 가진 패킷이 스위치로 들어오면, 전체 포트로 패킷을 전달하는 것
+  
+  - **Address Learning**
+  
+    - MAC 주소 테이블에 어느 위치(포트)에 어떤 장비(MAC 주소)가 연결되어 있는지에 대한 정보를 기록하고 유지하는 것
+  
+    - 특정 포트를 타고 스위치로 도달한 패킷의 ==출발지 MAC 주소==를 매핑하여 저장함
+  
+      ![image-20240208230859006](Assets/01_OSI_7_Layer.assets/image-20240208230859006.png)
+  
+    - 어드레스 러닝은 출발지 MAC 주소를 사용하므로, 브로드캐스트 및 멀티캐스트에 대한 MAC 주소를 학습할 수 없음
+  
+      - 브로드캐스트 및 멀티캐스트에는 목적지 MAC 주소만 사용되기 때문
+  
+    - //////
+  
     - MAC 주소, 📌 VLAN, 포트 정보를 매핑하여 저장
+  
     - 📌 Broadcasting Domain/Traffic
+  
     - 📌 Frame Flooding
+  
   - https://velog.io/@indongcha/IT-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%85%EB%AC%B8-4%EC%9E%A5-%EC%8A%A4%EC%9C%84%EC%B9%98-2%EA%B3%84%EC%B8%B5-%EC%9E%A5%EB%B9%84
+  
+  - https://bignet.tistory.com/16
 
 
 
