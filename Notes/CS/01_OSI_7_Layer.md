@@ -316,6 +316,7 @@
 ### 3.2.4. 주요 장비
 
 - **네트워크 인터페이스 카드(NIC)**
+  
   - PC나 서버 등의 컴퓨터를 네트워크에 연결해 주는 장치
   
   - 서로 다른 형태의 데이터를 전송하는 컴퓨터와 네트워크 간 상호작용이 가능하도록 하는 장치
@@ -410,29 +411,35 @@
   
         - 스위치의 포트에 할당된 VLAN에 접속할 수 있음
   
-    - 📌 VLAN TAG
+    - VLAN TAG
+      
       - 스위치가 3개의 VLAN을 사용하는 경우, 각 VLAN이 통신하려면 3개의 포트가 필요함
-  
+      
       - VLAN을 더 많이 사용하는 중·대형 네트워크에서는 더 많은 포트의 낭비가 일어남
-  
+      
       - VLAN 태그를 통해 이러한 문제를 해결
-        - 
   
-    - MAC 주소, 📌 VLAN, 포트 정보를 매핑하여 저장
-  
-    - 📌 Broadcasting Domain/Traffic
-  
-    - 📌 Frame Flooding
-  
-  - https://velog.io/@indongcha/IT-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%85%EB%AC%B8-4%EC%9E%A5-%EC%8A%A4%EC%9C%84%EC%B9%98-2%EA%B3%84%EC%B8%B5-%EC%9E%A5%EB%B9%84
-  
-  - https://bignet.tistory.com/16
+      - VLAN 태그를 사용할 수 있는 포트를 태그 포트 또는 트렁크 포트라고 함
+      
+        - 하나의 포트에서 여러 VLAN이 전송할 수 있게 됨
+        - 송신 측에서 태그 포트로 패킷을 보낼 때 VLAN ID를 붙여서 보냄
+        - 태그 포트에서는 VLAN ID를 제거하면서 해당 수신 측 VLAN으로 패킷을 전달함
+      
+      - MAC 주소 테이블에 VLAN 필드가 추가됨
+      
+        ![image-20240208230859008](Assets/01_OSI_7_Layer.assets/image-20240208230859008.png)
+      
+        - VLAN으로 네트워크를 분리 시, 각 VLAN마다 MAC 주소가 매핑되는 것처럼 동작함
 
 
 
 - **브리지**
   - 네트워크 세그먼트(큰 네트워크를 구성하는 작은 네트워크 집합)를 서로 연결하는 장치
   - 📌 세그먼트 (Broadcast domain - 라우터가 구성하는 범위..? 같은 느낌)
+  - https://heisyoung.tistory.com/52
+  - https://hyewon-study-log.tistory.com/113
+  - https://yeoulcoding.tistory.com/131
+- 콜리전 도메인
 
 
 
@@ -446,6 +453,7 @@
 - [HDLC 프로토콜](https://ddingz.tistory.com/158)
 - [NIC (Network Interface Card)에 대하여](https://alluknow.tistory.com/73)
 - [쉽게 이해하는 네트워크 10. TCP/IP 네트워크 인터페이스 계층의 역할과 데이터 전송 (ft. 랜카드와 MAC 주소)](https://better-together.tistory.com/101)
+- [IT 엔지니어를 위한 네트워크 입문 - 4장 스위치: 2계층 장비](https://velog.io/@indongcha/IT-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%85%EB%AC%B8-4%EC%9E%A5-%EC%8A%A4%EC%9C%84%EC%B9%98-2%EA%B3%84%EC%B8%B5-%EC%9E%A5%EB%B9%84)
 
 
 
