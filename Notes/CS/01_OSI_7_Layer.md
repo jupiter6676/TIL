@@ -113,6 +113,11 @@
 
     - 서로 다른 네트워크의 기기들로부터 오는 신호를 받아, 신호를 증폭하여 다른 기기로 전달함
 
+  - **플러딩**(Flooding)
+
+    - 허브는 한 장비로부터 수신한 데이터 프레임을, 허브와 연결된 모든 컴퓨터에 데이터를 전송함
+    - 따라서 필요 없는 포트까지 프레임을 전송하여 충돌이 발생함 → 콜리전 도메인
+  
   - **콜리전 도메인**(Collision Domain)
 
     - 대부분의 컴퓨터는 이더넷(Ethernet) 방식으로 통신함
@@ -124,11 +129,11 @@
 
       - 같은 콜리전 도메인 영역의 컴퓨터들은 동시에 신호를 보내는 경우 충돌함
       - 따라서 한 컴퓨터가 메시지를 보낼 때까지 기다린 후, 다음 컴퓨터가 메시지를 보내야 함
-
+  
     - 그러나, ==허브는 콜리전 도메인을 나누지 못함==
-
+  
       ![image-20240208230859009](Assets/01_OSI_7_Layer.assets/image-20240208230859009.png)
-
+  
       - 이는 2계층의 스위치 혹은 브리지와 허브의 큰 차이 중 하나임
       - 허브를 통해 연결된 모든 네트워크 장비들은 한 번에 하나의 장비만 메시지를 보낼 수 있음
       - 스위치는 콜리전 도메인을 나누어 줄 수 있으며, 요즘은 거의 스위치를 사용함
@@ -392,7 +397,7 @@
 
 
 
-- **스위치(Switch)**
+- **스위치(Switch)** - L2 스위치
 
   ![image-20240208230859005](Assets/01_OSI_7_Layer.assets/image-20240208230859005.png)
 
@@ -499,6 +504,7 @@
 - [[Network 용어] 브리지(Bridge), 스위치(Switch)란?](https://yeoulcoding.tistory.com/131)
 - [[이론] 브리지와 스위치의 차이점](https://letitkang.tistory.com/95)
 - [리피터, 허브, 브리지, 스위치, 라우터 정리](https://hyewon-study-log.tistory.com/113)
+- [네트워크] VLAN 총정리 (개념, 명령어, 설정)
 
 
 
@@ -512,6 +518,32 @@
         <p style="margin: 0;">논리적 주소(IP)를 정의하며, 라우팅과 포워딩을 통해 패킷(Packet)을 전송하는 계층</p>
     </div>
 </div>
+### 3.3.1. 역할
+
+- 1계층 (물리 계층)
+  - 디지털 신호 ↔ 아날로그(전기) 신호 상호 변환
+  - 허브를 통해 브로드캐스팅 방식으로 모든 컴퓨터에 신호 전달 가능
+    - ✨✨✨✨ [브로드캐스트(Broadcast)란?](https://velog.io/@ragnarok_code/%EB%B8%8C%EB%A1%9C%EB%93%9C%EC%BA%90%EC%8A%A4%ED%8A%B8Broadcast%EB%9E%80)
+- 2계층 (데이터 링크 계층)
+  - MAC 주소 테이블
+  - 특정 MAC 주소를 통해 특정 목적지 포트로 데이터 전송 가능
+  - 플러딩(Flooding)
+    - 목적지 MAC 주소 - 포트가 테이블에 등록되지 않다면, 연결된 모든 컴퓨터에 신호를 보냄
+    - 플러딩을 통해 MAC 주소를 테이블에 등록함
+
+
+
+- 3계층
+  - 서로 다른 네트워크에 있는 목적지로 데이터를 전송할 수 있도록 함
+    - 스위치로 연결된 컴퓨터들의 집합을 하나의 네트워크로 볼 수 있음
+    - 2계층에서는
+      - MAC 주소를 이용하여 1개의 스위치에 등록된 컴퓨터에게 데이터를 전송하였음
+      - 즉, 같은 네트워크 내의 컴퓨터에게 데이터를 전송하였음
+
+
+
+
+
 
 - 📌 Datagram (Network Layer) vs Segment (Transport Layer)
   - Sending Side
@@ -548,6 +580,17 @@
 
 
 
+### 참고
+
+- [[OSI 모델 Layer 3] - 네트워크 계층](https://velog.io/@jinh2352/OSI-%EB%AA%A8%EB%8D%B8-Layer-3-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+- 🎬 [IP 주소를 묶는 방법, CIDR란?](https://youtu.be/kYiQGpPVnyI)
+- [[네트워크] Network layer](https://inyongs.tistory.com/63)
+- [네트워크 - Network Layer](https://dev-ahn.tistory.com/78)
+- [Network Layer(네트워크 계층)](https://velog.io/@jeongbeom4693/Network-Layer%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+- [OSI 3 계층 네트워크 계층 (Network Layer) 알아보기](https://jake-seo-dev.tistory.com/228)
+
+
+
 
 ---
 
@@ -558,17 +601,3 @@
 
 - https://community.fs.com/article/tcpip-vs-osi-whats-the-difference-between-the-two-models.html
 - https://kumarjanglu.online/7-layers-of-osi-model-ccna-course/
-
-
-
-- 2 계층
-  - https://m.blog.naver.com/joo1020_kr/221471086900
-  - https://egstory.net/edge-study/tech-lesson/aos-cx-switching/544/
-  - [[네트워크] VLAN 총정리 (개념, 명령어, 설정)](https://m.blog.naver.com/lunarispars/221440105402)
-
-- 3 계층
-  - [[OSI 모델 Layer 3] - 네트워크 계층](https://velog.io/@jinh2352/OSI-%EB%AA%A8%EB%8D%B8-Layer-3-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
-  - 🎬 [IP 주소를 묶는 방법, CIDR란?](https://youtu.be/kYiQGpPVnyI)
-  - [[네트워크] Network layer](https://inyongs.tistory.com/63)
-  - [네트워크 - Network Layer](https://dev-ahn.tistory.com/78)
-  - [Network Layer(네트워크 계층)](https://velog.io/@jeongbeom4693/Network-Layer%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
