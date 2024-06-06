@@ -552,18 +552,9 @@
 - **Addressing**(IP 주소)
 
   - 네트워크에서 ==장치들이 서로를 인식하고 통신==하기 위한 ==논리적 주소==
-
-  - 모든 네트워크 장치(호스트, 라우터 등)은 IP 주소를 반드시 가짐
-
+- 모든 네트워크 장치(호스트, 라우터 등)은 IP 주소를 반드시 가짐
   - IP 주소는 장치가 가지는 고유한 주소로, ==라우팅==을 위해 사용됨
-
-  - IP 패킷
-
-    - 네트워크 계층에서 데이터 캡슐화 시, 데이터에 IP 헤더를 추가하는데 그 형태를 IP 패킷이라 함
-
-    - IP 패킷은 다음과 같은 구조를 띰
-
-      ![image-20240208230859010](Assets/01_OSI_7_Layer.assets/image-20240208230859010.png)
+- IP 주소는 인터넷 서비스 제공자(ISP)에게 받을 수 있음
 
 
 
@@ -657,70 +648,122 @@
 
 
 
-- 네트워크 서비스 모델
-  - 송수신 호스트 간의 패킷 전송 특성을 정의하는 모델
-  
-  - 네트워크 계층은 다양한 서비스 모델을 제공하며, 모델에 따라 다음의 의문에 대한 답이 결정됨
-    - 전송 계층(4계층, Transport)은 네트워크 계층이 목적지까지 패킷을 전달한다는 것을 믿을 수 있는가?
-    - 여러 패킷이 전송될 때, 수신 호스트의 전송 계층에 패킷이 보낸 순서와 동일하게 전달되는가?
-    - 연속적인 두 패킷 사이의 송신 시간이, 해당 패킷의 수신 시간과 동일한가?
-    - 네트워크가 네트워크 혼잡에 대한 피드백을 제공할 수 있는가?
-    - 송수신 호스트에서 전송 계층을 연결하는 채널의 추상적인 관점이란?
-    
-  - 네트워크 계층은 다음과 같은 서비스를 제공함
-    - 보장된 전달
-      - 패킷이 출발지로부터 목적지까지 도착하는 것을 보장하는 서비스
-    - 지연 제한 이내의 보장된 전달
-      - 패킷이 특정 지연 제한 안에 목적지까지 전달하는 것을 보장하는 서비스
-    - 순서화 패킷 전달
-      - 패킷이 송신된 순서대로 목적지에 도착하는 것을 보장하는 서비스
-    - 최소 대역폭 보장
-      - 송신과 수신 호스트 사이에 특정한 비트율의 전송 링크를 에뮬레이트
-      - 송신 호스트가 특정 비트율 이하로 비트를 전송하는 한, 모든 패킷이 목적지로 전달됨을 보장하는 서비스
-    - 보안 서비스
-      - 전송 계층의 모든 세그먼트에 대한 기밀성 유지
-        - 모든 데이터그램을 송신 호스트에서 암호화할 수 있어야 함
-        - 모든 데이터그램을 수신 호스트에서 복호화할 수 있어야 함
-    
-  - **최선형 서비스**(Best-effort Service)
-  
-    - 인터넷 네트워크 계층은 최선형 서비스를 제공
-  
-      - 빠른 시간 내의 데이터 전송을 최우선으로 하는 전달 방식
-      - 데이터의 중요도나 주체와 무관하게, 선입선출 방식으로 처리함
-      - 수신자의 데이터 수신 여부, 전송 데이터의 품질(QoS), 데이터의 우선도를 보장하지 않는 특징을 가짐
-      - 분실되거나 손상된 데이터를 복구하는 기능을 제공하지 않음
-  
-    - 특징
-  
-      - 패킷이 목적지까지 도착하는 것을 보장하지 않음
-      - 패킷이 송신된 순서대로 목적지에 도착하는 것을 보장하지 않음
-      - 호스트 간의 지연 방지를 보장하지 않음
-      - 최소 대역폭을 보장하지 않음
-  
-    - 최근 데이터 트래픽이 증가함에 따라 최선형 서비스 유지가 어려워지고 있음
-  
-      - 트래픽에 대한 전송 차등화를 통해 트래픽 품질 보장과 추가 요금을 부가하거나,
-      - 요금제 변경을 통한 별도의 망 이용 요금을 부가하는 등의 트래픽 관리 방식이 사용되기도 함
-  
-    - 최선형 서비스보다 좋은 서비스 모델도 정의 및 구현되어 있음
-  
-      ![image-20240208230859014](Assets/01_OSI_7_Layer.assets/image-20240208230859014.png)
-  
-      - ATM 구조: 지연 제한 이내의 보장된 전달, 순서화 패킷 전달, 최소 대역폭 보장
-      - Intserv 구조의 제안: 종단 간 지연 보장, 혼잡 방지 통신을 목표로 함
-      - 그럼에도 최선형 서비스는 많은 범위의 애플리케이션에서 사용할 만큼 좋다고 입증되었음
-        - 충분한 대역폭의 프로비저닝
-          - 실시간 회의 애플리케이션: Skype, FaceTime
-          - 스트리밍 서비스: Netflix
-        - 매커니즘의 단순성으로 인해 인터넷에 널리 배포될 수 있었음
+### 3.3.4. 네트워크 서비스 모델
+
+- 송수신 호스트 간의 패킷 전송 특성을 정의하는 모델
+
+- 네트워크 계층은 다양한 서비스 모델을 제공하며, 모델에 따라 다음의 의문에 대한 답이 결정됨
+  - 전송 계층(4계층, Transport)은 네트워크 계층이 목적지까지 패킷을 전달한다는 것을 믿을 수 있는가?
+  - 여러 패킷이 전송될 때, 수신 호스트의 전송 계층에 패킷이 보낸 순서와 동일하게 전달되는가?
+  - 연속적인 두 패킷 사이의 송신 시간이, 해당 패킷의 수신 시간과 동일한가?
+  - 네트워크가 네트워크 혼잡에 대한 피드백을 제공할 수 있는가?
+  - 송수신 호스트에서 전송 계층을 연결하는 채널의 추상적인 관점이란?
 
 
 
-### 3.3.4. 주요 장비
+- 네트워크 계층은 다음과 같은 서비스를 제공함
+  - 보장된 전달
+    - 패킷이 출발지로부터 목적지까지 도착하는 것을 보장하는 서비스
+  - 지연 제한 이내의 보장된 전달
+    - 패킷이 특정 지연 제한 안에 목적지까지 전달하는 것을 보장하는 서비스
+  - 순서화 패킷 전달
+    - 패킷이 송신된 순서대로 목적지에 도착하는 것을 보장하는 서비스
+  - 최소 대역폭 보장
+    - 송신과 수신 호스트 사이에 특정한 비트율의 전송 링크를 에뮬레이트
+    - 송신 호스트가 특정 비트율 이하로 비트를 전송하는 한, 모든 패킷이 목적지로 전달됨을 보장하는 서비스
+  - 보안 서비스
+    - 전송 계층의 모든 세그먼트에 대한 기밀성 유지
+      - 모든 데이터그램을 송신 호스트에서 암호화할 수 있어야 함
+      - 모든 데이터그램을 수신 호스트에서 복호화할 수 있어야 함
 
-- 라우터(Router)
-  - DHCP(Dynamic Host Configuration Protocol) 기능을 통해, IP 주소를 자동으로 할당함
+
+
+- **최선형 서비스**(Best-effort Service)
+
+  - 인터넷 네트워크 계층은 최선형 서비스를 제공
+
+    - 빠른 시간 내의 데이터 전송을 최우선으로 하는 전달 방식
+    - 데이터의 중요도나 주체와 무관하게, 선입선출 방식으로 처리함
+    - 수신자의 데이터 수신 여부, 전송 데이터의 품질(QoS), 데이터의 우선도를 보장하지 않는 특징을 가짐
+    - 분실되거나 손상된 데이터를 복구하는 기능을 제공하지 않음
+
+  - 특징
+
+    - 패킷이 목적지까지 도착하는 것을 보장하지 않음
+    - 패킷이 송신된 순서대로 목적지에 도착하는 것을 보장하지 않음
+    - 호스트 간의 지연 방지를 보장하지 않음
+    - 최소 대역폭을 보장하지 않음
+
+  - 최근 데이터 트래픽이 증가함에 따라 최선형 서비스 유지가 어려워지고 있음
+
+    - 트래픽에 대한 전송 차등화를 통해 트래픽 품질 보장과 추가 요금을 부가하거나,
+    - 요금제 변경을 통한 별도의 망 이용 요금을 부가하는 등의 트래픽 관리 방식이 사용되기도 함
+
+  - 최선형 서비스보다 좋은 서비스 모델도 정의 및 구현되어 있음
+
+    ![image-20240208230859014](Assets/01_OSI_7_Layer.assets/image-20240208230859014.png)
+
+    - ATM 구조: 지연 제한 이내의 보장된 전달, 순서화 패킷 전달, 최소 대역폭 보장
+    - Intserv 구조의 제안: 종단 간 지연 보장, 혼잡 방지 통신을 목표로 함
+    - 그럼에도 최선형 서비스는 많은 범위의 애플리케이션에서 사용할 만큼 좋다고 입증되었음
+      - 충분한 대역폭의 프로비저닝
+        - 실시간 회의 애플리케이션: Skype, FaceTime
+        - 스트리밍 서비스: Netflix
+      - 매커니즘의 단순성으로 인해 인터넷에 널리 배포될 수 있었음
+
+
+
+### 3.3.5. 프로토콜
+
+- IP 프로토콜
+  - [[네트워크] IP 프로토콜 개념 정리(IPv4, IPv6)](https://seosh817.tistory.com/33)
+  - [인터넷 프로토콜이란?](https://www.cloudflare.com/ko-kr/learning/network-layer/internet-protocol/)
+  - [[제4장] 네트워크 계층: 데이터 평면](https://velog.io/@jnary/%EC%A0%9C4%EC%9E%A5-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%89%EB%A9%B4)
+
+
+
+- **IP**(Internet Protocol)
+
+  - 역할
+
+    - 패킷(Packet)이라는 통신 단위로 데이터를 라우팅
+    - IP 주소를 지정
+
+  - IP 패킷
+
+    - 네트워크 계층에서 데이터 캡슐화 시, 데이터에 IP 헤더를 추가하는데 그 형태를 IP 패킷이라 함
+
+      - IP 정보는 각 패킷에 첨부되어, 라우터가 패킷을 올바른 곳에 전달하는 데 도움을 줌
+
+    - 패킷이 목적지에 도착되면 IP와 함께 어떤 전송 프로토콜이 사용되는지에 따라 다르게 처리됨
+
+      - 가장 일반적인 전송 프로토콜은 TCP와 UDP
+
+    - IP 패킷의 구조
+
+      ![image-20240208230859010](Assets/01_OSI_7_Layer.assets/image-20240208230859010.png)
+
+      - 버전(ver): IPv4 혹은 IPv6
+      - ID, Flags, Fragment Offset: **단편화**(Fragmentation)와 **재결합**(Reassembly)을 위해 사용
+        - 데이터그램을 잘게 쪼개고 다시 합칠 때 사용됨
+      - TTL(Time to Live): 데이터가 전달될 수 있는 Hop 수
+        - 라우터 하나를 거칠 때마다 Hop 수가 하나씩 줄어듦
+        - TTL 값이 0이 되면 라우터에서 데이터를 제거함
+      - 프로토콜(Protocol): 상위 전송(Transport) 계층의 프로토콜을 표시함 (TCP, UDP 혹은 ICMP)
+        - 데이터가 목적지에 도착했을 때만 사용됨
+      - 헤더 체크섬(Header Checksum): 받은 데이터의 에러 검출을 위해 사용
+        - TCP: 신뢰성있는 데이터 전송을 위해, 에러가 있으면 데이터를 재전송
+        - UDP: 체크섬 계산을 하지만, 에러를 정정하는 기능은 없음
+
+  - IPv4 주소 체계
+
+    - 
+
+
+
+- **DHCP**(Dynamic Host Configuration Protocol)
+  - DHCP를 통해 IP 주소를 자동으로 할당할 수 있음
+  - 
 
 
 
@@ -730,6 +773,12 @@
     - Transport Layer에서 Segment를 Datagram으로 Encaptulation(캡슐화)
   - Receiving Side
     - Datagram에서 Segment를 추출하여 Transport Layer로 전달
+  - [[네트워크] Network layer](https://inyongs.tistory.com/63)
+  - [네트워크 - Network Layer](https://dev-ahn.tistory.com/78)
+
+
+
+
 - 📌 ARP (Address Resolution Protocol)
   - 주소 해결 프로토콜
   - 수신자의 MAC 주소를 알기 위해 사용하는 프로토콜
@@ -746,20 +795,32 @@
 
 
 
-### 참고
+### 3.3.6. 참고
 
-- [[OSI 모델 Layer 3] - 네트워크 계층](https://velog.io/@jinh2352/OSI-%EB%AA%A8%EB%8D%B8-Layer-3-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
-- 🎬 [IP 주소를 묶는 방법, CIDR란?](https://youtu.be/kYiQGpPVnyI)
-- [[네트워크] Network layer](https://inyongs.tistory.com/63)
-- [네트워크 - Network Layer](https://dev-ahn.tistory.com/78)
-- [Network Layer(네트워크 계층)](https://velog.io/@jeongbeom4693/Network-Layer%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
-- [OSI 3 계층 네트워크 계층 (Network Layer) 알아보기](https://jake-seo-dev.tistory.com/228)
-- [What is the data plane?](https://ngrok.com/blog-post/data-plane)
-- [12. Software Defined Networking, OpenFlow - 일반화된 포워딩 방식, SDN, 소프트웨어 정의 네트워킹](https://movefast.tistory.com/54)
-- [[네트워크] 네트워크 계층 (4) SDN 개념 / OpenFlow](https://narakit.tistory.com/9)
-- [3계층 [네트워크 계층] part 1 포워딩과 라우팅](https://velog.io/@97gkswn/3%EA%B3%84%EC%B8%B5-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5-part-1%ED%8F%AC%EC%9B%8C%EB%94%A9%EA%B3%BC-%EB%9D%BC%EC%9A%B0%ED%8C%85)
-- [[제4장] 네트워크 계층: 데이터 평면](https://velog.io/@jnary/%EC%A0%9C4%EC%9E%A5-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%89%EB%A9%B4)
-- [[Network] 네트워크 서비스 모델 요점 정리](https://howudong.tistory.com/411)
+- 기능
+  - [[OSI 모델 Layer 3] - 네트워크 계층](https://velog.io/@jinh2352/OSI-%EB%AA%A8%EB%8D%B8-Layer-3-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+  - [OSI 3 계층 네트워크 계층 (Network Layer) 알아보기](https://jake-seo-dev.tistory.com/228)
+  - [3계층 [네트워크 계층] part 1 포워딩과 라우팅](https://velog.io/@97gkswn/3%EA%B3%84%EC%B8%B5-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5-part-1%ED%8F%AC%EC%9B%8C%EB%94%A9%EA%B3%BC-%EB%9D%BC%EC%9A%B0%ED%8C%85)
+  - 제어 평면, 데이터 평면
+    - [Network Layer(네트워크 계층)](https://velog.io/@jeongbeom4693/Network-Layer%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+    - [What is the data plane?](https://ngrok.com/blog-post/data-plane)
+    - [[제4장] 네트워크 계층: 데이터 평면](https://velog.io/@jnary/%EC%A0%9C4%EC%9E%A5-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%89%EB%A9%B4)
+
+
+
+- 프로토콜
+  - IP
+    - [OSI 3 계층 네트워크 계층 (Network Layer) 알아보기](https://jake-seo-dev.tistory.com/228)
+    - 🎬 [IP 주소를 묶는 방법, CIDR란?](https://youtu.be/kYiQGpPVnyI)
+  - [[OSI 모델 Layer 3] - 네트워크 계층](https://velog.io/@jinh2352/OSI-%EB%AA%A8%EB%8D%B8-Layer-3-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+
+
+
+- 네트워크 서비스 모델
+  - [Network Layer(네트워크 계층)](https://velog.io/@jeongbeom4693/Network-Layer%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5)
+  - [12. Software Defined Networking, OpenFlow - 일반화된 포워딩 방식, SDN, 소프트웨어 정의 네트워킹](https://movefast.tistory.com/54)
+  - [[네트워크] 네트워크 계층 (4) SDN 개념 / OpenFlow](https://narakit.tistory.com/9)
+  - [[Network] 네트워크 서비스 모델 요점 정리](https://howudong.tistory.com/411)
 
 
 
